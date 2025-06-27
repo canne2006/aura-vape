@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+OCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -74,6 +74,7 @@
     <nav>
       <a href="#desechables-wrapper">Desechables</a>
       <a href="#recargables-wrapper">Recargables</a>
+      <a href="#marcas-wrapper">Marcas</a>
     </nav>
     <div class="search-controls">
       <input type="text" id="buscador" placeholder="Buscar producto..." onkeyup="buscarProducto()">
@@ -136,7 +137,98 @@
         <button class="buy-btn" onclick="addToCartSelect('IPLAY Max', 250, 'sabores-iplay')">Añadir al carrito</button>
       </div>
     </div>
+      <!-- PACKSPOD -->
+    <div class="card">
+      <img src="packspod.jpg" alt="Packspod Disposable">
+      <div class="card-body">
+        <h3>Packspod Disposable</h3>
+        <p class="price">$350</p>
+        <label for="sabores-packspod">Elige sabor:</label>
+        <select id="sabores-packspod">
+          <option value="">Selecciona un sabor</option>
+          <option>Sweet Guava</option>
+          <option>Kiwi Strawberry</option>
+          <option>Cherry Pop</option>
+          <option>Mint</option>
+          <option>Watermelon Freeze</option>
+        </select>
+        <button class="buy-btn" onclick="addToCartSelect('Packspod Disposable', 350, 'sabores-packspod')">Añadir al carrito</button>
+      </div>
+    </div>
+    <!-- IPLAY DISPOSABLE -->
+    <div class="card">
+      <img src="iplay.png" alt="IPLAY Disposable">
+      <div class="card-body">
+        <h3>IPLAY Disposable</h3>
+        <p class="price">$400</p>
+        <label for="sabores-iplayreg">Elige sabor:</label>
+        <select id="sabores-iplayreg">
+          <option value="">Selecciona un sabor</option>
+          <option>Coco Strawberry</option>
+          <option>Grape Strawberry</option>
+          <option>Tabaco</option>
+          <option>Blackberry</option>
+          <option>Cool Mint</option>
+          <option>Mango Litchi</option>
+          <option>Kiwi Strawberry</option>
+          <option>Banana Strawberry</option>
+          <option>Cancun Breeze</option>
+          <option>Watermelon Chill</option>
+        </select>
+        <button class="buy-btn" onclick="addToCartSelect('IPLAY Disposable', 400, 'sabores-iplayreg')">Añadir al carrito</button>
+      </div>
+    </div>
+    <!-- WAKA DISPOSABLE -->
+    <div class="card">
+      <img src="waka.png" alt="Waka Disposable">
+      <div class="card-body">
+        <h3>Waka Disposable</h3>
+        <p class="price">$400</p>
+        <label for="sabores-waka">Elige sabor:</label>
+        <select id="sabores-waka">
+          <option value="">Selecciona un sabor</option>
+          <option>Kiwi Passion Guava</option>
+          <option>Strawberry Kiwi</option>
+          <option>Sakura Grape</option>
+          <option>Strawberry Grape</option>
+          <option>Strawberry Watermelon</option>
+          <option>Fresh Mint</option>
+        </select>
+        <button class="buy-btn" onclick="addToCartSelect('Waka Disposable', 400, 'sabores-waka')">Añadir al carrito</button>
+      </div>
+    </div>
+    <!-- ELF BAR -->
+    <div class="card">
+      <img src="elfbar.png" alt="Elf Bar Disposable">
+      <div class="card-body">
+        <h3>Elf Bar Disposable</h3>
+        <p class="price">$370</p>
+        <label for="sabores-elfbar">Elige sabor:</label>
+        <select id="sabores-elfbar">
+          <option value="">Selecciona un sabor</option>
+          <option>Watermelon Ice</option>
+          <option>Blue Razz Lemon</option>
+          <option>Strawberry Ice Cream</option>
+          <option>Kiwi Passion Fruit Guava</option>
+          <option>Cola</option>
+        </select>
+        <button class="buy-btn" onclick="addToCartSelect('Elf Bar Disposable', 370, 'sabores-elfbar')">Añadir al carrito</button>
+      </div>
+    </div>
   </section>
+
+  <!-- MARCAS SECTION -->
+  <div id="marcas-wrapper" class="section-wrapper">
+    <h2>Marcas</h2>
+    <ul style="list-style:none;padding:0;max-width:600px;margin:2rem auto;text-align:left;">
+      <li><a href="#">Lost Vape</a></li>
+      <li><a href="#">IPLAY Max</a></li>
+      <li><a href="#">Packspod</a></li>
+      <li><a href="#">IPLAY Disposable</a></li>
+      <li><a href="#">Waka</a></li>
+      <li><a href="#">Elf Bar</a></li>
+    </ul>
+  </div>
 
   <!-- RECARGABLES SECTION -->
   <div id="recargables-wrapper" class="section-wrapper">
@@ -189,6 +281,4 @@
   </script>
 </body>
 </html>
-
-actualiza
-  
+actualizacion de pagina 
