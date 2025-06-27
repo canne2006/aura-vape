@@ -6,159 +6,46 @@
   <title>Aura Vape</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-    body { background: #f9f9f9; color: #333; line-height: 1.6; }
-
+    *{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',sans-serif;}
+    body{background:#f9f9f9;color:#333;line-height:1.6;}
     /* Overlay de verificación de edad */
-    #age-overlay {
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9);
-      color: #fff;
-      display: flex; flex-direction: column;
-      justify-content: center; align-items: center;
-      z-index: 2000; text-align: center;
-      padding: 2rem;
-    }
-    #age-overlay h2 { margin-bottom: 1rem; font-size: 1.5rem; }
-    #age-overlay p { margin-bottom: 2rem; font-size: 1rem; max-width: 400px; }
-    #age-overlay button {
-      margin: .5rem; padding: .8rem 1.2rem;
-      border: none; border-radius: 8px;
-      font-size: 1rem; cursor: pointer;
-    }
-    #age-overlay .accept { background: #25d366; color: #fff; }
-    #age-overlay .decline { background: #e53935; color: #fff; }
+    #age-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:2000;text-align:center;padding:2rem;}
+    #age-overlay h2{margin-bottom:1rem;font-size:1.5rem;}
+    #age-overlay p{margin-bottom:2rem;font-size:1rem;max-width:400px;}
+    #age-overlay button{margin:0.5rem;padding:0.8rem 1.2rem;border:none;border-radius:8px;font-size:1rem;cursor:pointer;}
+    #age-overlay .accept{background:#25d366;color:#fff;}
+    #age-overlay .decline{background:#e53935;color:#fff;}
 
-    /* Barra superior */
-    .topbar {
-      position: fixed; top: 0; left: 0;
-      width: 100%; background: #005b72; color: #fff;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: .6rem 1rem; z-index: 1001; font-weight: 600;
-    }
-    .topbar .left, .topbar .center, .topbar .right {
-      display: flex; align-items: center; gap: 1rem;
-    }
-    .topbar input, .topbar select {
-      padding: .4rem .8rem; border-radius: 8px; border: none;
-    }
-    .topbar a { color: white; text-decoration: none; }
-    .topbar a:hover { text-decoration: underline; }
-
-    /* Encabezado */
-    header {
-      position: relative; text-align: center; color: #fff;
-      margin-top: 4rem;
-    }
-    header img.bg-cover {
-      width: 100%; height: 100%; max-height: 600px;
-      object-fit: cover; filter: brightness(.4);
-    }
-    header .overlay {
-      position: absolute; top: 0; left: 0;
-      width: 100%; height: 100%;
-      display: flex; justify-content: center; align-items: center;
-      z-index: 1; padding: 2rem;
-    }
-    header p.tagline {
-      font-size: 1.2rem; font-weight: 600; color: white;
-    }
-
-    /* Introducción */
-    #intro {
-      display: flex; flex-direction: column; align-items: center;
-      gap: 1rem; padding: 2rem 1rem;
-    }
-    #intro img {
-      max-width: 100%; height: auto; border-radius: 12px;
-    }
-    #intro p {
-      max-width: 800px; text-align: center;
-      font-size: 1rem; color: #555;
-    }
-
-    /* Catálogo */
-    section { padding: 6rem 1rem 3rem; max-width: 1200px; margin: auto; }
-    #catalogo {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-    .card {
-      background: #fff; border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,.08);
-      overflow: hidden; transition: transform .2s;
-    }
-    .card:hover { transform: translateY(-5px); }
-    .card img {
-      width: 100%; height: 200px; object-fit: cover;
-    }
-    .card-content { padding: 1rem; }
-    .card-content h3 {
-      font-size: 1.2rem; margin-bottom: .5rem;
-      text-transform: capitalize;
-    }
-    .card-content .price {
-      font-weight: 600; margin-bottom: 1rem;
-    }
-
-    /* Botón flotante WhatsApp */
-    #whatsapp-btn {
-      position: fixed; bottom: 25px; right: 25px;
-      background: #25d366; color: #fff;
-      width: 60px; height: 60px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,.2);
-      font-size: 32px; z-index: 1000; text-decoration: none;
-    }
-
-    footer {
-      background: #1e88e5; color: #fff;
-      text-align: center; padding: 1rem;
-      margin-top: 3rem;
-    }
-
-    details ul { list-style: none; padding-left: 1rem; }
-    details ul li { margin-bottom: .3rem; }
-
-    @media (prefers-color-scheme: dark) {
-      body { background: #121212; color: #eee; }
-      .topbar { background: #003e50; }
-      header p.tagline { color: #fff; }
-      footer { background: #1565c0; }
-      .card { background: #1e1e1e; color: #eee; }
-    }
+    .topbar{position:fixed;top:0;left:0;width:100%;background:#005b72;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0.6rem 1rem;z-index:1001;font-weight:600;}
+    .topbar .left,.topbar .center,.topbar .right{display:flex;align-items:center;gap:1rem;}
+    .topbar input,.topbar select{padding:0.4rem 0.8rem;border-radius:8px;border:none;}
+    .topbar a{color:white;text-decoration:none;}
+    .topbar a:hover{text-decoration:underline;}
+    header{position:relative;text-align:center;color:#fff;margin-top:4rem;}
+    header img.bg-cover{width:100%;height:100%;max-height:600px;object-fit:cover;filter:brightness(0.4);}
+    header .overlay{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;justify-content:center;align-items:center;z-index:1;padding:2rem;}
+    header p.tagline{font-size:1.2rem;font-weight:600;color:white;}
+    #intro{display:flex;flex-direction:column;align-items:center;gap:1rem;padding:2rem 1rem;}
+    #intro img{max-width:100%;height:auto;border-radius:12px;}
+    #intro p{max-width:800px;text-align:center;font-size:1rem;color:#555;}
+    section{padding:6rem 1rem 3rem;max-width:1200px;margin:auto;}
+    #catalogo{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;}
+    .card{background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.08);overflow:hidden;transition:transform .2s;}
+    .card:hover{transform:translateY(-5px);} .card img{width:100%;height:200px;object-fit:cover;}
+    .card-content{padding:1rem;} .card-content h3{font-size:1.2rem;margin-bottom:.5rem;text-transform:capitalize;}
+    .card-content .price{font-weight:600;margin-bottom:1rem;}
+    #whatsapp-btn{position:fixed;bottom:25px;right:25px;background:#25d366;color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.2);font-size:32px;z-index:1000;text-decoration:none;}
+    footer{background:#1e88e5;color:#fff;text-align:center;padding:1rem;margin-top:3rem;}
+    details ul{list-style:none;padding-left:1rem;} details ul li{margin-bottom:.3rem;}
+    @media (prefers-color-scheme: dark){body{background:#121212;color:#eee;} .topbar{background:#003e50;} header p.tagline{color:#fff;} footer{background:#1565c0;} .card{background:#1e1e1e;color:#eee;}}
   </style>
-
   <script>
-    // Verificación de edad
-    function acceptAge() {
-      document.getElementById('age-overlay').style.display = 'none';
-    }
-    function declineAge() {
-      window.location.href = 'https://www.google.com';
-    }
-
-    // Buscador
-    function buscarProducto() {
-      const q = document.getElementById('buscador').value.toLowerCase();
-      document.querySelectorAll('.card').forEach(card => {
-        card.style.display = card.textContent.toLowerCase().includes(q) ? 'block' : 'none';
-      });
-    }
-
-    // Ordenar precios
-    function ordenarPorPrecio(order = 'asc') {
-      const grid = document.getElementById('catalogo');
-      const cards = Array.from(grid.querySelectorAll('.card'));
-      cards.sort((a, b) => {
-        const pa = parseFloat(a.querySelector('.price').textContent.replace('$',''));
-        const pb = parseFloat(b.querySelector('.price').textContent.replace('$',''));
-        return order === 'asc' ? pa - pb : pb - pa;
-      });
-      cards.forEach(c => grid.appendChild(c));
-    }
+    // Age verification
+    function acceptAge(){document.getElementById('age-overlay').style.display='none';}
+    function declineAge(){window.location.href='https://www.google.com';}
+    // Buscador y orden
+    function buscarProducto(){const q=document.getElementById('buscador').value.toLowerCase();document.querySelectorAll('.card').forEach(card=>{card.style.display=card.textContent.toLowerCase().includes(q)?'block':'none';});}
+    function ordenarPorPrecio(order="asc"){const grid=document.getElementById('catalogo');const cards=Array.from(grid.querySelectorAll('.card'));cards.sort((a,b)=>{const pa=parseFloat(a.querySelector('.price').textContent.replace('$',''));const pb=parseFloat(b.querySelector('.price').textContent.replace('$',''));return order==='asc'?pa-pb:pb-pa;});cards.forEach(c=>grid.appendChild(c));}
   </script>
 </head>
 <body>
@@ -174,10 +61,7 @@
   <div class="topbar">
     <div class="left">
       <a href="#catalogo">CATÁLOGO</a>
-      <a href="#waka">Waka</a>
-      <a href="#iplay">IPLAY</a>
-      <a href="#packspod">Packspod</a>
-      <a href="#elfbar">Elf Bar</a>
+      <a href="#waka">Waka</a> <a href="#iplay">IPLAY</a> <a href="#packspod">Packspod</a> <a href="#elfbar">Elf Bar</a>
     </div>
     <div class="center">
       <input type="text" id="buscador" onkeyup="buscarProducto()" placeholder="Buscar producto...">
@@ -195,9 +79,7 @@
   <!-- Encabezado -->
   <header>
     <img src="img/portada-principal.jpg" alt="Aura Vape" class="bg-cover">
-    <div class="overlay">
-      <p class="tagline">La experiencia del vapeo.... elevada</p>
-    </div>
+    <div class="overlay"><p class="tagline">La experiencia del vapeo.... elevada</p></div>
   </header>
 
   <!-- Introducción -->
@@ -208,73 +90,29 @@
 
   <!-- Catálogo de productos -->
   <section id="catalogo">
-    <!-- Packspod -->
-    <div class="card" id="packspod">
-      <img src="img/packspod.jpg" alt="Cool Mint">
-      <div class="card-content">
-        <h3>Cool Mint</h3>
-        <p class="price">$350</p>
-      </div>
-    </div>
+    <!-- Productos Packspod -->
+    <div class="card" id="packspod"><img src="img/packspod.jpg" alt="Cool Mint"><div class="card-content"><h3>Cool Mint</h3><p class="price">$350</p></div></div>
     <!-- IPLAY -->
-    <div class="card" id="iplay">
-      <img src="img/iplay.png" alt="IPLAY Disposable">
-      <div class="card-content">
-        <h3>IPLAY Disposable</h3>
-        <p class="price">$400</p>
-        <details>
-          <summary>Elige sabor</summary>
-          <ul>
-            <li>Coco Strawberry</li>
-            <li>Grape Strawberry</li>
-            <li>Tabaco</li>
-            <li>Blackberry</li>
-            <li>Cool Mint</li>
-            <li>Mango Litchi</li>
-            <li>Kiwi Strawberry</li>
-            <li>Banana Strawberry</li>
-            <li>Cancun Breeze</li>
-            <li>Watermelon Chill</li>
-          </ul>
-        </details>
-      </div>
-    </div>
+    <div class="card" id="iplay"><img src="img/iplay.png" alt="IPLAY Disposable"><div class="card-content"><h3>IPLAY Disposable</h3><p class="price">$400</p><details><summary>Elige sabor</summary><ul><li>Coco Strawberry</li><li>Grape Strawberry</li><li>Tabaco</li><li>Blackberry</li><li>Cool Mint</li><li>Mango Litchi</li><li>Kiwi Strawberry</li><li>Banana Strawberry</li><li>Cancun Breeze</li><li>Watermelon Chill</li></ul></details></div></div>
     <!-- Waka -->
-    <div class="card" id="waka">
-      <img src="img/waka.png" alt="Waka Disposable">
-      <div class="card-content">
-        <h3>Waka Disposable</h3>
-        <p class="price">$400</p>
-        <details>
-          <summary>Elige sabor</summary>
-          <ul>
-            <li>Kiwi Passion Guava</li>
-            <li>Strawberry Kiwi</li>
-            <li>Sakura Grape</li>
-            <li>Strawberry Grape</li>
-            <li>Strawberry Watermelon</li>
-            <li>Fresh Mint</li>
-          </ul>
-        </details>
-      </div>
-    </div>
+    <div class="card" id="waka"><img src="img/waka.png" alt="Waka Disposable"><div class="card-content"><h3>Waka Disposable</h3><p class="price">$400</p><details><summary>Elige sabor</summary><ul><li>Kiwi Passion Guava</li><li>Strawberry Kiwi</li><li>Sakura Grape</li><li>Strawberry Grape</li><li>Strawberry Watermelon</li><li>Fresh Mint</li></ul></details></div></div>
   </section>
 
   <!-- Contacto -->
-  <section id="contacto" style="padding:3rem 1rem;max-width:1200px;margin:auto;text-align:center;">
-    <h2>Contáctanos</h2>
-    <p>WhatsApp: <a href="https://wa.me/525573878279" target="_blank">+52 557 387 8279</a></p>
-    <p>Instagram: <a href="https://www.instagram.com/auraavape" target="_blank">@auraavape</a></p>
-  </section>
+  <section id="contacto" style="padding:3rem 1rem;max-width:1200px;margin:auto;text-align:center;"><h2>Contáctanos</h2><p>WhatsApp: <a href="https://wa.me/525573878279" target="_blank">+52 557 387 8279</a></p><p>Instagram: <a href="https://www.instagram.com/auraavape" target="_blank">@auraavape</a></p></section>
 
   <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Aura Vape. Todos los derechos reservados.</p>
-  </footer>
-
-  <!-- Botón flotante WhatsApp -->
-  <a id="whatsapp-btn" href="https://wa.me/525573878279" target="_blank" aria-label="WhatsApp">&#x1F4AC;</a>
+  <footer><p>&copy; 2025 Aura Vape. Todos los derechos reservados.</p></footer>
 </body>
 </html>
 
-actualizada 
+
+actualizacion de pagina 
+
+    
+  
+
+
+
+     
+  
