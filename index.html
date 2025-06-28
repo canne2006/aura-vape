@@ -1,284 +1,129 @@
-OCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aura Vape</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
     *{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',sans-serif;}
-    body{background:#f9f9f9;color:#333;line-height:1.6;}
+    body{background:#f9f9f9;color:#333;line-height:1.6;scroll-behavior:smooth;}
 
-    /* AGE OVERLAY */
-    #age-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9) url('CDC0C05A-6244-4176-A27B-A41E836DDCDA.png') center/cover no-repeat;color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:2000;text-align:center;padding:2rem;}
-    #age-overlay h2,#age-overlay p{background:rgba(0,0,0,.6);padding:0.5rem 1rem;border-radius:8px;}
-    #age-overlay h2{margin-bottom:1rem;font-size:1.5rem;}
-    #age-overlay p{margin-bottom:2rem;max-width:400px;font-size:1rem;}
-    #age-overlay button{margin:0.5rem;padding:0.8rem 1.2rem;border:none;border-radius:8px;font-size:1rem;cursor:pointer;}
-    #age-overlay .accept{background:#25d366;color:#fff;}#age-overlay .decline{background:#e53935;color:#fff;}
+    /* --- CONTACT BAR --- */
+    .contact-bar{background:#25d366;color:#fff;text-align:center;padding:.5rem;font-weight:600;}
+    .contact-bar .dropdown{display:inline-block;position:relative;}
+    .contact-bar button{background:none;border:none;color:#fff;font-size:1rem;cursor:pointer;}
+    .contact-bar .dropdown-content{display:none;position:absolute;background:#fff;min-width:160px;box-shadow:0 8px 16px rgba(0,0,0,.2);z-index:1000;}
+    .contact-bar .dropdown-content a{display:block;padding:10px 16px;color:#333;text-decoration:none;}
+    .contact-bar .dropdown-content a:hover{background:#f1f1f1;}
+    .contact-bar .dropdown:hover .dropdown-content{display:block;}
 
-    /* NAVBAR */
-    .navbar{display:flex;flex-direction:column;align-items:center;background:#fff;padding:1rem;box-shadow:0 2px 4px rgba(0,0,0,0.1);position:sticky;top:0;z-index:100;}  
-    .navbar nav{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;margin-bottom:1rem;}
-    .navbar nav a{color:#333;text-decoration:none;font-weight:600;}
-    .navbar nav a:hover{color:#007bff;}
-    .navbar .search-controls{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
-    .navbar input[type="text"],.navbar select{padding:0.5rem 0.8rem;border-radius:8px;border:1px solid #ccc;}
-    .cart-icon{position:relative;cursor:pointer;font-size:1.5rem;margin-left:1rem;}
-    #cart-count{position:absolute;top:-6px;right:-10px;background:#e53935;color:#fff;font-size:0.75rem;padding:2px 6px;border-radius:50%;}
+    /* --- AGE OVERLAY --- */
+    #age-overlay{position:fixed;inset:0;background:rgba(0,0,0,.9) url('CDC0C05A-6244-4176-A27B-A41E836DDCDA.png') center/cover no-repeat;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem;color:#fff;z-index:3000;}
+    #age-overlay h2,#age-overlay p{background:rgba(0,0,0,.6);padding:.5rem 1rem;border-radius:8px;}
+    #age-overlay button{margin:.5rem;padding:.8rem 1.2rem;border:none;border-radius:8px;font-size:1rem;cursor:pointer;font-weight:600;}
+    #age-overlay .accept{background:#25d366;}#age-overlay .decline{background:#e53935;}
 
-    /* HERO */
-    .hero{width:100%;height:350px;background:url('CDC0C05A-6244-4176-A27B-A41E836DDCDA.png') center/cover no-repeat;display:flex;align-items:center;justify-content:center;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.7);font-size:2rem;font-weight:bold;}
+    /* --- PRESENTATION MODAL --- */
+    #presentation-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:2500;justify-content:center;align-items:center;text-align:center;padding:2rem;}
+    #presentation-box{background:#fff;color:#333;max-width:500px;padding:2rem;border-radius:12px;}
+    #presentation-box button{margin-top:1rem;padding:.8rem 1.5rem;background:#25d366;border:none;border-radius:8px;color:#fff;font-weight:600;cursor:pointer;}
 
-    /* WRAPPERS */
-    .section-wrapper{background:url('CDC0C05A-6244-4176-A27B-A41E836DDCDA.png') center/cover no-repeat;padding:4rem 1rem;text-align:center;color:#fff;}
-    .section-wrapper h2{font-size:2rem;margin-bottom:1rem;}
-    .toggle-btn{background:#25d366;color:#fff;border:none;padding:0.8rem 1.5rem;font-size:1rem;border-radius:10px;cursor:pointer;}
+    /* --- NAVBAR --- */
+    .navbar{position:sticky;top:0;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.1);padding:1rem;z-index:100;display:flex;flex-direction:column;align-items:center;gap:1rem;}
+    .navbar nav{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;}
+    .navbar a,.navbar .dropdownBtn{font-weight:600;text-decoration:none;color:#333;background:none;border:none;cursor:pointer;}
+    .navbar a:hover,.navbar .dropdownBtn:hover{color:#007bff;}
+    .navbar .search-controls{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;align-items:center;}
+    .navbar input,.navbar select{padding:.5rem .8rem;border:1px solid #ccc;border-radius:8px;}
+    .cart-icon{position:relative;font-size:1.5rem;cursor:pointer;}
+    #cart-count{position:absolute;top:-6px;right:-10px;background:#e53935;color:#fff;font-size:.75rem;border-radius:50%;padding:2px 6px;}
 
-    /* PRODUCT GRID */
+    /* Marcas dropdown */
+    .nav-dropdown{position:relative;display:inline-block;}
+    .nav-dropdown-content{display:none;position:absolute;background:#fff;min-width:150px;box-shadow:0 8px 16px rgba(0,0,0,.2);}
+    .nav-dropdown-content a{display:block;padding:10px 14px;color:#333;text-decoration:none;}
+    .nav-dropdown-content a:hover{background:#f1f1f1;}
+    .nav-dropdown:hover .nav-dropdown-content{display:block;}
+
+    /* --- HERO --- */
+    .hero{height:320px;background:url('CDC0C05A-6244-4176-A27B-A41E836DDCDA.png') center/cover no-repeat;display:flex;align-items:center;justify-content:center;font-size:.9rem;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.7);}
+
+    /* --- MENU BOXES --- */
+    .menu-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;margin:2rem auto;max-width:900px;}
+    .menu-box{flex:1 1 300px;max-width:350px;background:#25d366;color:#fff;text-align:center;padding:2rem;border-radius:12px;}
+    .menu-box button{margin-top:1rem;padding:.8rem 1.2rem;border:none;border-radius:10px;background:#fff;color:#25d366;font-weight:600;cursor:pointer;}
+
+    /* --- PRODUCT GRID --- */
     .products{display:none;max-width:1200px;margin:auto;padding:2rem 1rem;}
     .products.active{display:block;}
-    .card{background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.08);overflow:hidden;margin-bottom:2rem;}
-    .card img{width:100%;height:300px;object-fit:contain;background:#f5f5f5;}
-    .card-body{padding:1rem;}
-    .card-body h3{font-size:1.2rem;margin-bottom:.5rem;}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;}
+    .card{background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.08);overflow:hidden;display:flex;flex-direction:column;}
+    .card img{width:100%;height:200px;object-fit:contain;background:#f5f5f5;}
+    .card-body{padding:1rem;display:flex;flex-direction:column;flex:1;}
+    .card-body h3{margin-bottom:.5rem;font-size:1.1rem;}
     .price{font-weight:600;margin-bottom:1rem;}
-    .card-body label{font-weight:600;}
-    .card-body select{display:block;width:100%;padding:0.5rem;margin:0.5rem 0;border-radius:8px;border:1px solid #ccc;}
-    .buy-btn{margin-top:1rem;padding:0.8rem 1.2rem;border:none;border-radius:8px;background:#25d366;color:#fff;cursor:pointer;font-weight:600;width:100%;}
+    .card-body select{padding:.5rem;border:1px solid #ccc;border-radius:8px;margin-bottom:.5rem;}
+    .buy-btn{margin-top:auto;padding:.8rem 1.2rem;border:none;border-radius:8px;background:#25d366;color:#fff;font-weight:600;cursor:pointer;}
 
-    /* CART PANEL */
+    /* --- CART PANEL --- */
     #cart-panel{position:fixed;top:0;right:-350px;width:320px;height:100%;background:#fff;box-shadow:-4px 0 10px rgba(0,0,0,.2);transition:right .3s ease;z-index:1500;display:flex;flex-direction:column;}
     #cart-panel.open{right:0;}
-    #cart-header{display:flex;justify-content:space-between;align-items:center;padding:1rem;border-bottom:1px solid #ddd;font-weight:600;}
+    #cart-header{padding:1rem;border-bottom:1px solid #ddd;font-weight:600;display:flex;justify-content:space-between;align-items:center;}
     #cart-items{flex:1;overflow-y:auto;padding:1rem;}
-    #cart-items div{margin-bottom:0.8rem;border-bottom:1px dashed #ddd;padding-bottom:0.5rem;}
-    #cart-footer{padding:1rem;border-top:1px solid #ddd;text-align:center;}
-    #checkout-btn{background:#25d366;color:#fff;border:none;padding:0.8rem 1.2rem;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;width:100%;}
+    #cart-footer{padding:1rem;border-top:1px solid #ddd;}
+    #checkout-btn{width:100%;padding:.8rem 1.2rem;border:none;border-radius:8px;background:#25d366;color:#fff;font-weight:600;cursor:pointer;}
+
+    /* --- FOOTER --- */
+    footer{background:#f1f1f1;text-align:center;padding:1rem;margin-top:3rem;font-size:.9rem;}
+    footer a{color:#25d366;text-decoration:none;margin:0 .5rem;}
   </style>
 </head>
 <body>
+  <!-- CONTACT BAR -->
+  <div class="contact-bar" data-aos="fade-down">
+    <span>Contacto: </span>
+    <div class="dropdown">
+      <button>Contacto</button>
+      <div class="dropdown-content">
+        <a href="https://wa.me/525573878279" target="_blank">WhatsApp</a>
+        <a href="https://instagram.com/auravapemx" target="_blank">Instagram</a>
+      </div>
+    </div>
+  </div>
+
   <!-- AGE VERIFICATION -->
   <div id="age-overlay">
     <h2>ADVERTENCIA</h2>
-    <p>Este sitio contiene productos dirigidos exclusivamente a mayores de edad. El uso de vapeadores está restringido a personas menores de 18 años. Si eres menor de edad, por favor abandona esta página.</p>
-    <button class="accept" onclick="document.getElementById('age-overlay').style.display='none'">Soy mayor de edad</button>
-    <button class="decline" onclick="window.location.href='https://www.google.com'">Soy menor de edad</button>
+    <p>Este sitio es solo para mayores de edad. Si eres menor, abandona esta página.</p>
+    <button class="accept" onclick="acceptAge()">Soy mayor de edad</button>
+    <button class="decline" onclick="window.location='https://www.google.com'">Salir</button>
+  </div>
+
+  <!-- PRESENTATION MODAL -->
+  <div id="presentation-modal">
+    <div id="presentation-box" data-aos="zoom-in" class="box">
+      <h2>Somos una empresa dedicada a brindarte la mejor experiencia del vapeo</h2>
+      <p>Calidad, seguridad y estilo en cada producto.</p>
+      <button onclick="closePresentation()">Ir a comprar</button>
+    </div>
   </div>
 
   <!-- HERO -->
-  <div class="hero">Bienvenido a Aura Vape</div>
+  <div class="hero" data-aos="fade-in">la experiencia del vapeo.... elevada</div>
 
   <!-- NAVBAR -->
-  <div class="navbar">
+  <div class="navbar" data-aos="fade-up">
     <nav>
-      <a href="#desechables-wrapper">Desechables</a>
-      <a href="#recargables-wrapper">Recargables</a>
-      <a href="#marcas-wrapper">Marcas</a>
-    </nav>
-    <div class="search-controls">
-      <input type="text" id="buscador" placeholder="Buscar producto..." onkeyup="buscarProducto()">
-      <select onchange="ordenarPorPrecio(this.value)">
-        <option value="asc">Menor precio</option>
-        <option value="desc">Mayor precio</option>
-      </select>
-      <div class="cart-icon" onclick="toggleCart()">
-        🛒<span id="cart-count">0</span>
-      </div>
-    </div>
-  </div>
+      <a href="#desechables-section">Desechables</a>
+      <a href="#recargables-section">Recargables</a>
+      <div class="nav-dropdown">
+        <button class="dropdownBtn">Marcas</button>
+        <div class="nav-dropdown-content">
+          <a href="#">Packspod</
 
-  <!-- DESECHABLES SECTION -->
-  <div id="desechables-wrapper" class="section-wrapper">
-    <h2>DESECHABLES</h2>
-    <button class="toggle-btn" onclick="toggleSection('desechables')">Ver Catálogo</button>
-  </div>
-  <section id="desechables" class="products">
-    <!-- LOST VAPE -->
-    <div class="card">
-      <img src="Captura de Pantalla 2025-06-27 a la(s) 14.37.33.png" alt="Lost Vape">
-      <div class="card-body">
-        <h3>Lost Vape</h3>
-        <p class="price">$300</p>
-        <label for="sabores-lost">Elige sabor:</label>
-        <select id="sabores-lost">
-          <option value="">Selecciona un sabor</option>
-          <option>Grape Burst</option>
-          <option>Pineapple Lemonade</option>
-          <option>Raspberry Sour Apple</option>
-        </select>
-        <button class="buy-btn" onclick="addToCartSelect('Lost Vape', 300, 'sabores-lost')">Añadir al carrito</button>
-      </div>
-    </div>
-    <!-- IPLAY MAX -->
-    <div class="card">
-      <img src="Captura de Pantalla 2025-06-27 a la(s) 14.38.31.png" alt="IPLAY Max">
-      <div class="card-body">
-        <h3>IPLAY Max</h3>
-        <p class="price">$250</p>
-        <label for="sabores-iplay">Elige sabor:</label>
-        <select id="sabores-iplay">
-          <option value="">Selecciona un sabor</option>
-          <option>Grape Strawberry</option>
-          <option>Grapefruit Berry</option>
-          <option>Guava Raspberry</option>
-          <option>Lush Ice</option>
-          <option>Mango Ice</option>
-          <option>Peach Ice</option>
-          <option>Watermelon Banana</option>
-          <option>Rainbow Berry</option>
-          <option>Iced Coffee</option>
-          <option>Low Mint</option>
-          <option>Coconut Strawberry</option>
-          <option>Strawberry Lychee</option>
-          <option>Double Mint</option>
-          <option>Black Mint</option>
-        </select>
-        <button class="buy-btn" onclick="addToCartSelect('IPLAY Max', 250, 'sabores-iplay')">Añadir al carrito</button>
-      </div>
-    </div>
-      <!-- PACKSPOD -->
-    <div class="card">
-      <img src="packspod.jpg" alt="Packspod Disposable">
-      <div class="card-body">
-        <h3>Packspod Disposable</h3>
-        <p class="price">$350</p>
-        <label for="sabores-packspod">Elige sabor:</label>
-        <select id="sabores-packspod">
-          <option value="">Selecciona un sabor</option>
-          <option>Sweet Guava</option>
-          <option>Kiwi Strawberry</option>
-          <option>Cherry Pop</option>
-          <option>Mint</option>
-          <option>Watermelon Freeze</option>
-        </select>
-        <button class="buy-btn" onclick="addToCartSelect('Packspod Disposable', 350, 'sabores-packspod')">Añadir al carrito</button>
-      </div>
-    </div>
-    <!-- IPLAY DISPOSABLE -->
-    <div class="card">
-      <img src="iplay.png" alt="IPLAY Disposable">
-      <div class="card-body">
-        <h3>IPLAY Disposable</h3>
-        <p class="price">$400</p>
-        <label for="sabores-iplayreg">Elige sabor:</label>
-        <select id="sabores-iplayreg">
-          <option value="">Selecciona un sabor</option>
-          <option>Coco Strawberry</option>
-          <option>Grape Strawberry</option>
-          <option>Tabaco</option>
-          <option>Blackberry</option>
-          <option>Cool Mint</option>
-          <option>Mango Litchi</option>
-          <option>Kiwi Strawberry</option>
-          <option>Banana Strawberry</option>
-          <option>Cancun Breeze</option>
-          <option>Watermelon Chill</option>
-        </select>
-        <button class="buy-btn" onclick="addToCartSelect('IPLAY Disposable', 400, 'sabores-iplayreg')">Añadir al carrito</button>
-      </div>
-    </div>
-    <!-- WAKA DISPOSABLE -->
-    <div class="card">
-      <img src="waka.png" alt="Waka Disposable">
-      <div class="card-body">
-        <h3>Waka Disposable</h3>
-        <p class="price">$400</p>
-        <label for="sabores-waka">Elige sabor:</label>
-        <select id="sabores-waka">
-          <option value="">Selecciona un sabor</option>
-          <option>Kiwi Passion Guava</option>
-          <option>Strawberry Kiwi</option>
-          <option>Sakura Grape</option>
-          <option>Strawberry Grape</option>
-          <option>Strawberry Watermelon</option>
-          <option>Fresh Mint</option>
-        </select>
-        <button class="buy-btn" onclick="addToCartSelect('Waka Disposable', 400, 'sabores-waka')">Añadir al carrito</button>
-      </div>
-    </div>
-    <!-- ELF BAR -->
-    <div class="card">
-      <img src="elfbar.png" alt="Elf Bar Disposable">
-      <div class="card-body">
-        <h3>Elf Bar Disposable</h3>
-        <p class="price">$370</p>
-        <label for="sabores-elfbar">Elige sabor:</label>
-        <select id="sabores-elfbar">
-          <option value="">Selecciona un sabor</option>
-          <option>Watermelon Ice</option>
-          <option>Blue Razz Lemon</option>
-          <option>Strawberry Ice Cream</option>
-          <option>Kiwi Passion Fruit Guava</option>
-          <option>Cola</option>
-        </select>
-        <button class="buy-btn" onclick="addToCartSelect('Elf Bar Disposable', 370, 'sabores-elfbar')">Añadir al carrito</button>
-      </div>
-    </div>
-  </section>
 
-  <!-- MARCAS SECTION -->
-  <div id="marcas-wrapper" class="section-wrapper">
-    <h2>Marcas</h2>
-    <ul style="list-style:none;padding:0;max-width:600px;margin:2rem auto;text-align:left;">
-      <li><a href="#">Lost Vape</a></li>
-      <li><a href="#">IPLAY Max</a></li>
-      <li><a href="#">Packspod</a></li>
-      <li><a href="#">IPLAY Disposable</a></li>
-      <li><a href="#">Waka</a></li>
-      <li><a href="#">Elf Bar</a></li>
-    </ul>
-  </div>
+            reactualizacion
+  
 
-  <!-- RECARGABLES SECTION -->
-  <div id="recargables-wrapper" class="section-wrapper">
-    <h2>RECARGABLES</h2>
-    <button class="toggle-btn" onclick="toggleSection('recargables')">Ver Productos</button>
-  </div>
-  <section id="recargables" class="products"><!-- Vacío por ahora --></section>
-
-  <!-- CART PANEL -->
-  <div id="cart-panel">
-    <div id="cart-header">Tu carrito <span style="cursor:pointer;font-size:1.2rem;" onclick="toggleCart()">✕</span></div>
-    <div id="cart-items"></div>
-    <div id="cart-footer"><button id="checkout-btn" onclick="checkout()">Proceder a compra</button></div>
-  </div>
-
-  <script>
-    /* SEARCH & SORT (opcionales – placeholder) */
-    function buscarProducto(){}
-    function ordenarPorPrecio(){}
-
-    /* TOGGLE SECTIONS */
-    function toggleSection(id){document.getElementById(id).classList.toggle('active');}
-
-    /* CART LOGIC */
-    const cart=[];
-    function addToCartSelect(name, price, selectId){
-      const flavor=document.getElementById(selectId).value;
-      if(!flavor){alert('Selecciona un sabor primero');return;}
-      cart.push({name, flavor, price});
-      updateCartUI();
-      alert('Producto añadido al carrito');
-    }
-    function updateCartUI(){
-      document.getElementById('cart-count').textContent=cart.length;
-      const itemsDiv=document.getElementById('cart-items');
-      itemsDiv.innerHTML='';
-      cart.forEach((item,i)=>{
-        itemsDiv.innerHTML+=`<div>#${i+1} - ${item.name} (${item.flavor}) - $${item.price}</div>`;
-      });
-    }
-    function toggleCart(){document.getElementById('cart-panel').classList.toggle('open');}
-    function checkout(){
-      if(cart.length===0){alert('Tu carrito está vacío');return;}
-      let msg='Hola, quiero comprar los siguientes productos:%0A';
-      cart.forEach((item,i)=>{msg+=`${i+1}. ${item.name} - sabor ${item.flavor} - $${item.price}%0A`;});
-      const total=cart.reduce((sum,p)=>sum+p.price,0);
-      msg+=`Total: $${total}`;
-      window.open('https://wa.me/525573878279?text='+msg,'_blank');
-    }
-  </script>
-</body>
-</html>
-actualizacion de pagina 2
