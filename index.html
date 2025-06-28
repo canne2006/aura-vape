@@ -10,7 +10,6 @@
     *{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',sans-serif;}
     body{background:#f9f9f9;color:#333;line-height:1.6;scroll-behavior:smooth;}
 
-    /* --- CONTACT BAR --- */
     .contact-bar{background:#25d366;color:#fff;text-align:center;padding:.5rem;font-weight:600;}
     .contact-bar .dropdown{display:inline-block;position:relative;}
     .contact-bar button{background:none;border:none;color:#fff;font-size:1rem;cursor:pointer;}
@@ -19,18 +18,15 @@
     .contact-bar .dropdown-content a:hover{background:#f1f1f1;}
     .contact-bar .dropdown:hover .dropdown-content{display:block;}
 
-    /* --- AGE OVERLAY --- */
-    #age-overlay{position:fixed;inset:0;background:rgba(0,0,0,.9) url('CDC0C05A-6244-4176-A27B-A41E836DDCDA.png') center/cover no-repeat;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem;color:#fff;z-index:3000;}
+    #age-overlay{position:fixed;inset:0;background:rgba(0,0,0,.9) url('img/hero-background.png') center/cover no-repeat;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem;color:#fff;z-index:3000;}
     #age-overlay h2,#age-overlay p{background:rgba(0,0,0,.6);padding:.5rem 1rem;border-radius:8px;}
     #age-overlay button{margin:.5rem;padding:.8rem 1.2rem;border:none;border-radius:8px;font-size:1rem;cursor:pointer;font-weight:600;}
     #age-overlay .accept{background:#25d366;}#age-overlay .decline{background:#e53935;}
 
-    /* --- PRESENTATION MODAL --- */
     #presentation-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:2500;justify-content:center;align-items:center;text-align:center;padding:2rem;}
     #presentation-box{background:#fff;color:#333;max-width:500px;padding:2rem;border-radius:12px;}
     #presentation-box button{margin-top:1rem;padding:.8rem 1.5rem;background:#25d366;border:none;border-radius:8px;color:#fff;font-weight:600;cursor:pointer;}
 
-    /* --- NAVBAR --- */
     .navbar{position:sticky;top:0;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.1);padding:1rem;z-index:100;display:flex;flex-direction:column;align-items:center;gap:1rem;}
     .navbar nav{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;}
     .navbar a,.navbar .dropdownBtn{font-weight:600;text-decoration:none;color:#333;background:none;border:none;cursor:pointer;}
@@ -40,22 +36,18 @@
     .cart-icon{position:relative;font-size:1.5rem;cursor:pointer;}
     #cart-count{position:absolute;top:-6px;right:-10px;background:#e53935;color:#fff;font-size:.75rem;border-radius:50%;padding:2px 6px;}
 
-    /* Marcas dropdown */
     .nav-dropdown{position:relative;display:inline-block;}
     .nav-dropdown-content{display:none;position:absolute;background:#fff;min-width:150px;box-shadow:0 8px 16px rgba(0,0,0,.2);}
     .nav-dropdown-content a{display:block;padding:10px 14px;color:#333;text-decoration:none;}
     .nav-dropdown-content a:hover{background:#f1f1f1;}
     .nav-dropdown:hover .nav-dropdown-content{display:block;}
 
-    /* --- HERO --- */
-    .hero{height:320px;background:url('CDC0C05A-6244-4176-A27B-A41E836DDCDA.png') center/cover no-repeat;display:flex;align-items:center;justify-content:center;font-size:.9rem;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.7);}
+    .hero{height:320px;background:url('img/hero-background.png') center/cover no-repeat;display:flex;align-items:center;justify-content:center;font-size:.9rem;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.7);}
 
-    /* --- MENU BOXES --- */
     .menu-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;margin:2rem auto;max-width:900px;}
     .menu-box{flex:1 1 300px;max-width:350px;background:#25d366;color:#fff;text-align:center;padding:2rem;border-radius:12px;}
     .menu-box button{margin-top:1rem;padding:.8rem 1.2rem;border:none;border-radius:10px;background:#fff;color:#25d366;font-weight:600;cursor:pointer;}
 
-    /* --- PRODUCT GRID --- */
     .products{display:none;max-width:1200px;margin:auto;padding:2rem 1rem;}
     .products.active{display:block;}
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;}
@@ -67,7 +59,6 @@
     .card-body select{padding:.5rem;border:1px solid #ccc;border-radius:8px;margin-bottom:.5rem;}
     .buy-btn{margin-top:auto;padding:.8rem 1.2rem;border:none;border-radius:8px;background:#25d366;color:#fff;font-weight:600;cursor:pointer;}
 
-    /* --- CART PANEL --- */
     #cart-panel{position:fixed;top:0;right:-350px;width:320px;height:100%;background:#fff;box-shadow:-4px 0 10px rgba(0,0,0,.2);transition:right .3s ease;z-index:1500;display:flex;flex-direction:column;}
     #cart-panel.open{right:0;}
     #cart-header{padding:1rem;border-bottom:1px solid #ddd;font-weight:600;display:flex;justify-content:space-between;align-items:center;}
@@ -75,7 +66,6 @@
     #cart-footer{padding:1rem;border-top:1px solid #ddd;}
     #checkout-btn{width:100%;padding:.8rem 1.2rem;border:none;border-radius:8px;background:#25d366;color:#fff;font-weight:600;cursor:pointer;}
 
-    /* --- FOOTER --- */
     footer{background:#f1f1f1;text-align:center;padding:1rem;margin-top:3rem;font-size:.9rem;}
     footer a{color:#25d366;text-decoration:none;margin:0 .5rem;}
   </style>
@@ -113,15 +103,32 @@
   <!-- HERO -->
   <div class="hero" data-aos="fade-in">la experiencia del vapeo.... elevada</div>
 
-  <!-- NAVBAR -->
-  <div class="navbar" data-aos="fade-up">
-    <nav>
-      <a href="#desechables-section">Desechables</a>
-      <a href="#recargables-section">Recargables</a>
-      <div class="nav-dropdown">
-        <button class="dropdownBtn">Marcas</button>
-        <div class="nav-dropdown-content">
-          <a href="#">Packspod</
+  <!-- CONTENIDO DE PRODUCTOS -->
+  <!-- AQUÍ INSERTAREMOS LOS BLOQUES DE PRODUCTOS CON LOS NOMBRES DE IMAGEN ACTUALIZADOS EN EL SIGUIENTE PASO -->
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Aura Vape</p>
+    <a href="https://wa.me/525573878279" target="_blank">WhatsApp</a>
+    <a href="https://instagram.com/auravapemx" target="_blank">Instagram</a>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+    function acceptAge() {
+      document.getElementById('age-overlay').style.display = 'none';
+      document.getElementById('presentation-modal').style.display = 'flex';
+    }
+    function closePresentation() {
+      document.getElementById('presentation-modal').style.display = 'none';
+    }
+    function toggleCart() {
+      document.getElementById('cart-panel').classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
 
 
             reactualizacion
