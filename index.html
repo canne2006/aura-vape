@@ -1,6 +1,99 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura Vape</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',sans-serif;}
+    body{background:#f9f9f9;color:#333;line-height:1.6;}
+
+    .contact-bar {
+      background: #25d366;
+      color: white;
+      text-align: center;
+      padding: 0.5rem;
+      font-weight: 600;
+    }
+    .contact-bar a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+    }
+    .contact-bar a:hover {
+      text-decoration: underline;
+    }
+
+    /* AGE OVERLAY */
+    #age-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9) url('CDC0C05A-6244-4176-A27B-A41E836DDCDA.png') center/cover no-repeat;color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:2000;text-align:center;padding:2rem;}
+    #age-overlay h2,#age-overlay p{background:rgba(0,0,0,.6);padding:0.5rem 1rem;border-radius:8px;}
+    #age-overlay h2{margin-bottom:1rem;font-size:1.5rem;}
+    #age-overlay p{margin-bottom:2rem;max-width:400px;font-size:1rem;}
+    #age-overlay button{margin:0.5rem;padding:0.8rem 1.2rem;border:none;border-radius:8px;font-size:1rem;cursor:pointer;}
+    #age-overlay .accept{background:#25d366;color:#fff;}#age-overlay .decline{background:#e53935;color:#fff;}
+
+    /* NAVBAR */
+    .navbar{display:flex;flex-direction:column;align-items:center;background:#fff;padding:1rem;box-shadow:0 2px 4px rgba(0,0,0,0.1);position:sticky;top:0;z-index:100;}  
+    .navbar nav{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;margin-bottom:1rem;}
+    .navbar nav a{color:#333;text-decoration:none;font-weight:600;}
+    .navbar nav a:hover{color:#007bff;}
+    .navbar .search-controls{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
+    .navbar input[type="text"],.navbar select{padding:0.5rem 0.8rem;border-radius:8px;border:1px solid #ccc;}
+    .cart-icon{position:relative;cursor:pointer;font-size:1.5rem;margin-left:1rem;}
+    #cart-count{position:absolute;top:-6px;right:-10px;background:#e53935;color:#fff;font-size:0.75rem;padding:2px 6px;border-radius:50%;}
+
+    /* HERO */
+    .hero{width:100%;height:350px;background:url('CDC0C05A-6244-4176-A27B-A41E836DDCDA.png') center/cover no-repeat;display:flex;align-items:center;justify-content:center;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.7);font-size:2rem;font-weight:bold;}
+
+    /* WRAPPERS */
+    .section-wrapper{background:url('CDC0C05A-6244-4176-A27B-A41E836DDCDA.png') center/cover no-repeat;padding:4rem 1rem;text-align:center;color:#fff;}
+    .section-wrapper h2{font-size:2rem;margin-bottom:1rem;}
+    .toggle-btn{background:#25d366;color:#fff;border:none;padding:0.8rem 1.5rem;font-size:1rem;border-radius:10px;cursor:pointer;}
+
+    /* PRODUCT GRID */
+    .products{display:none;max-width:1200px;margin:auto;padding:2rem 1rem;}
+    .products.active{display:block;}
+    .card{background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.08);overflow:hidden;margin-bottom:2rem;}
+    .card img{width:100%;height:300px;object-fit:contain;background:#f5f5f5;}
+    .card-body{padding:1rem;}
+    .card-body h3{font-size:1.2rem;margin-bottom:.5rem;}
+    .price{font-weight:600;margin-bottom:1rem;}
+    .card-body label{font-weight:600;}
+    .card-body select{display:block;width:100%;padding:0.5rem;margin:0.5rem 0;border-radius:8px;border:1px solid #ccc;}
+    .buy-btn{margin-top:1rem;padding:0.8rem 1.2rem;border:none;border-radius:8px;background:#25d366;color:#fff;cursor:pointer;font-weight:600;width:100%;}
+
+    /* CART PANEL */
+    #cart-panel{position:fixed;top:0;right:-350px;width:320px;height:100%;background:#fff;box-shadow:-4px 0 10px rgba(0,0,0,.2);transition:right .3s ease;z-index:1500;display:flex;flex-direction:column;}
+    #cart-panel.open{right:0;}
+    #cart-header{display:flex;justify-content:space-between;align-items:center;padding:1rem;border-bottom:1px solid #ddd;font-weight:600;}
+    #cart-items{flex:1;overflow-y:auto;padding:1rem;}
+    #cart-items div{margin-bottom:0.8rem;border-bottom:1px dashed #ddd;padding-bottom:0.5rem;}
+    #cart-footer{padding:1rem;border-top:1px solid #ddd;text-align:center;}
+    #checkout-btn{background:#25d366;color:#fff;border:none;padding:0.8rem 1.2rem;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;width:100%;}
+  </style>
+</head>
+<body>
+  <!-- CONTACT BAR -->
+  <div class="contact-bar">
+    <span>Contacto:</span>
+    <a href="https://wa.me/525573878279" target="_blank">WhatsApp</a>
+    <a href="https://instagram.com/auravapemx" target="_blank">Instagram</a>
+  </div>
+
+  <!-- AGE VERIFICATION -->
+  <div id="age-overlay">
+    <h2>ADVERTENCIA</h2>
+    <p>Este sitio contiene productos dirigidos exclusivamente a mayores de edad. El uso de vapeadores está restringido a personas menores de 18 años. Si eres menor de edad, por favor abandona esta página.</p>
+    <button class="accept" onclick="document.getElementById('age-overlay').style.display='none'">Soy mayor de edad</button>
+    <button class="decline" onclick="window.location.href='https://www.google.com'">Soy menor de edad</button>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">Bienvenido a Aura Vape</div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Aura Vape</title>
@@ -139,7 +232,7 @@
 
   <header>
     <h1>Aura Vape</h1>
-    <p>La experiencia del vapeo...elevada</p>
+    <p>Vapes de sabores premium</p>
   </header>
 
   <nav>
@@ -148,37 +241,6 @@
       <a href="#desechables">Desechables</a>
       <a href="#contacto">Contacto</a>
     </div>
-  
-    <div class="nav-marcas">
-      <a href="#Iplay" class="btn-marca">Iplay</a>
-      <a href="#Lost-Vape" class="btn-marca">Lost Vape</a>
-      <a href="#Waka" class="btn-marca">Waka</a>
-      <a href="#Packspod" class="btn-marca">Packspod</a>
-      <a href="#V-Vape" class="btn-marca">V-Vape</a>
-      <a href="#Dummy-Vape" class="btn-marca">Dummy Vape</a>
-      <a href="#Elf-Bar" class="btn-marca">Elf Bar</a>
-    </div>
-
-        /* CART PANEL */
-    #cart-panel{position:fixed;top:0;right:-350px;width:320px;height:100%;background:#fff;box-shadow:-4px 0 10px rgba(0,0,0,.2);transition:right .3s ease;z-index:1500;display:flex;flex-direction:column;}
-    #cart-panel.open{right:0;}
-    #cart-header{display:flex;justify-content:space-between;align-items:center;padding:1rem;border-bottom:1px solid #ddd;font-weight:600;}
-    #cart-items{flex:1;overflow-y:auto;padding:1rem;}
-    #cart-items div{margin-bottom:0.8rem;border-bottom:1px dashed #ddd;padding-bottom:0.5rem;}
-    #cart-footer{padding:1rem;border-top:1px solid #ddd;text-align:center;}
-    #checkout-btn{background:#25d366;color:#fff;border:none;padding:0.8rem 1.2rem;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;width:100%;}
-  </style>
-</head>
-<body>
-  <!-- AGE VERIFICATION -->
-  <div id="age-overlay">
-    <h2>ADVERTENCIA</h2>
-    <p>Este sitio contiene productos dirigidos exclusivamente a mayores de edad. El uso de vapeadores está restringido a personas menores de 18 años. Si eres menor de edad, por favor abandona esta página.</p>
-    <button class="accept" onclick="document.getElementById('age-overlay').style.display='none'">Soy mayor de edad</button>
-    <button class="decline" onclick="window.location.href='https://www.google.com'">Soy menor de edad</button>
-  </div>
-
-
 
     <div class="nav-marcas">
       <a href="#Iplay" class="btn-marca">Iplay</a>
@@ -190,7 +252,7 @@
       <a href="#Elf-Bar" class="btn-marca">Elf Bar</a>
     </div>
 
-     <div class="nav-icons" aria-label="Iconos de carrito y búsqueda">
+    <div class="nav-icons" aria-label="Iconos de carrito y búsqueda">
       <!-- Icono carrito -->
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" role="img">
         <path d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm-12.243-2l.766-3h12.954l-1.5 6h-11l-.22-3zM7 4h10l1.243 5H6.757L7 4z"/>
@@ -296,7 +358,6 @@
         </div>
       </div>
 
-
       <!-- Dummy Vape -->
       <div class="producto" id="Dummy-Vape">
         <img src="img/dummy-vape.png" alt="Dummy Vape" />
@@ -314,7 +375,6 @@
           <button>Agregar al carrito</button>
         </div>
       </div>
-
 
       <!-- Elf Bar -->
       <div class="producto" id="Elf-Bar">
@@ -336,14 +396,6 @@
     </div>
   </section>
 
-    <!-- CONTACT BAR -->
-  <div class="contact-bar">
-    <span>Contacto:</span>
-    <a href="https://wa.me/525573878279" target="_blank">WhatsApp</a>
-    <a href="https://instagram.com/auravapemx" target="_blank">Instagram</a>
-  </div>
-
-
   <!-- Sección de contacto -->
   <section id="contacto" style="text-align: center; padding: 40px;">
     <h2>Contacto</h2>
@@ -362,4 +414,281 @@
 S.A de C.V
      
    
-   
+   <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aura Vape</title>
+  <style>
+    /* ——— Estilos base ——— */
+    body{margin:0;font-family:Arial, sans-serif;background:#f8f8f8}
+    header{background:#1f1f1f;color:#fff;padding:20px;text-align:center}
+    h2{margin-top:40px;font-size:28px;color:#333}
+
+    /* ——— Navegación ——— */
+    nav{background:#333;display:flex;justify-content:space-between;align-items:center;padding:10px 20px;flex-wrap:wrap}
+    .nav-links a,.nav-marcas a{color:#fff;margin:0 10px;text-decoration:none;font-weight:bold;padding:6px 12px;border-radius:4px;transition:background .3s;white-space:nowrap}
+    .nav-links a:hover,.nav-marcas a:hover{background:#6f3ccf}
+    .nav-marcas a{background:#8c52ff}
+    .nav-icons{display:flex;align-items:center;gap:15px;color:#fff}
+
+    /* Carrito: contador sobre el ícono */
+    .cart-wrapper{position:relative}
+    #cart-count{position:absolute;top:-8px;right:-8px;background:#8c52ff;color:#fff;border-radius:50%;padding:2px 6px;font-size:12px}
+
+    .nav-icons svg{fill:#fff;width:24px;height:24px;cursor:pointer;transition:fill .3s}
+    .nav-icons svg:hover{fill:#8c52ff}
+
+    /* Botón WhatsApp */
+    .checkout-btn{background:#25D366;color:#fff;border:none;padding:8px 14px;border-radius:4px;font-weight:bold;cursor:pointer}
+    .checkout-btn:hover{background:#1ebe57}
+
+    /* ——— Catálogo ——— */
+    .catalogo{display:flex;flex-wrap:wrap;justify-content:center;padding:20px}
+    .producto{width:250px;margin:20px;border:1px solid #ccc;border-radius:10px;overflow:hidden;background:#fff;scroll-margin-top:80px}
+    .producto img{width:100%;height:200px;object-fit:cover}
+    .producto div{padding:10px}
+    .producto h3{margin:0 0 10px;font-size:18px}
+    .producto p{margin:0 0 10px}
+    .producto select{width:100%;padding:5px;margin-bottom:10px}
+    .producto button{background:#8c52ff;color:#fff;border:none;padding:10px;border-radius:5px;cursor:pointer;width:100%}
+    .producto button:hover{background:#6f3ccf}
+
+    footer{background:#1f1f1f;color:#fff;text-align:center;padding:20px;margin-top:40px}
+
+    /* Responsive */
+    @media(max-width:768px){
+      nav{flex-direction:column;align-items:flex-start}
+      .nav-marcas{margin-top:10px;display:flex;flex-wrap:wrap}
+      .nav-marcas a{margin:5px 5px 0 0}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Aura Vape</h1>
+    <p>Vapes de sabores premium</p>
+  </header>
+
+  <!-- ——— Barra de navegación ——— -->
+  <nav>
+    <div class="nav-links">
+      <a href="#inicio">Inicio</a>
+      <a href="#desechables">Desechables</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+
+    <div class="nav-marcas">
+      <a href="#Iplay">Iplay</a>
+      <a href="#Lost-Vape">Lost Vape</a>
+      <a href="#Waka">Waka</a>
+      <a href="#Packspod">Packspod</a>
+      <a href="#V-Vape">V‑Vape</a>
+      <a href="#Dummy-Vape">Dummy Vape</a>
+      <a href="#Elf-Bar">Elf Bar</a>
+    </div>
+
+    <div class="nav-icons">
+      <!-- Ícono carrito + contador -->
+      <div class="cart-wrapper">
+        <svg id="cart-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10
+                   0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-12.2-2l.8-3h12.9l-1.5
+                   6h-11l-.2-3zM7 4h10l1.2 5H6.8L7 4z"/>
+        </svg>
+        <span id="cart-count">0</span>
+      </div>
+      <!-- Ícono búsqueda (decorativo) -->
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 001.6-5.5C15.2 5.1 12.6 2.5
+                 9 2.5S2.8 5.1 2.8 8.4 5.4 14 9 14c1.6 0 3.1-.7 4.1-1.9l.3.3v.8l5
+                 5 1.5-1.5-5-5zm-6.5 0C6.0 14 4 12 4 9.5S6.0 5 9 5s5 2.0 5 4.5S12.0
+                 14 9 14z"/>
+      </svg>
+      <!-- Botón WhatsApp checkout -->
+      <button id="whatsapp-checkout" class="checkout-btn">Enviar pedido</button>
+    </div>
+  </nav>
+
+  <!-- ——— Catálogo de desechables ——— -->
+  <section id="desechables">
+    <h2 style="text-align:center;">Desechables</h2>
+    <div class="catalogo">
+
+      <!-- Iplay -->
+      <div class="producto" id="Iplay">
+        <img src="img/iplay.png" alt="Iplay">
+        <div>
+          <h3>Iplay</h3>
+          <p>Vape con sabores exóticos y diseño compacto.</p>
+          <label>Sabor:</label>
+          <select>
+            <option>Tropical Mango</option>
+            <option>Cool Mint</option>
+            <option>Berry Blast</option>
+          </select>
+          <p class="precio" style="font-weight:bold;">$280 MXN</p>
+          <button>Agregar al carrito</button>
+        </div>
+      </div>
+
+      <!-- Lost Vape -->
+      <div class="producto" id="Lost-Vape">
+        <img src="img/lost-vape.png" alt="Lost Vape">
+        <div>
+          <h3>Lost Vape</h3>
+          <p>Vape desechable de alto rendimiento, 6000 puffs.</p>
+          <label>Sabor:</label>
+          <select>
+            <option>Cool Mint</option>
+            <option>Summer Peach Ice</option>
+            <option>Blueberry Raspberry</option>
+          </select>
+          <p class="precio" style="font-weight:bold;">$250 MXN</p>
+          <button>Agregar al carrito</button>
+        </div>
+      </div>
+
+      <!-- Waka -->
+      <div class="producto" id="Waka">
+        <img src="img/waka.png" alt="Waka">
+        <div>
+          <h3>Waka</h3>
+          <p>Sabores vibrantes y diseño moderno.</p>
+          <label>Sabor:</label>
+          <select>
+            <option>Lychee Ice</option>
+            <option>Mango Pineapple</option>
+            <option>Watermelon</option>
+          </select>
+          <p class="precio" style="font-weight:bold;">$270 MXN</p>
+          <button>Agregar al carrito</button>
+        </div>
+      </div>
+
+      <!-- Packspod -->
+      <div class="producto" id="Packspod">
+        <img src="img/packspod.png" alt="Packspod">
+        <div>
+          <h3>Packspod</h3>
+          <p>Perfecto para uso diario, fácil de recargar.</p>
+          <label>Sabor:</label>
+          <select>
+            <option>Mint</option>
+            <option>Strawberry</option>
+            <option>Coffee</option>
+          </select>
+          <p class="precio" style="font-weight:bold;">$230 MXN</p>
+          <button>Agregar al carrito</button>
+        </div>
+      </div>
+
+      <!-- V‑Vape -->
+      <div class="producto" id="V-Vape">
+        <img src="img/v-vape.png" alt="V‑Vape">
+        <div>
+          <h3>V‑Vape</h3>
+          <p>Gran variedad de sabores premium. Potente y duradero.</p>
+          <label>Sabor:</label>
+          <select>
+            <option>Berry Rush</option>
+            <option>Black Mamba</option>
+            <option>Blue Razz Bash</option>
+            <option>Cherry Pop</option>
+            <option>Grape Escape</option>
+            <option>Merry Berry</option>
+            <option>Power Up</option>
+          </select>
+          <p class="precio" style="font-weight:bold;">$350 MXN</p>
+          <button>Agregar al carrito</button>
+        </div>
+      </div>
+
+      <!-- Dummy Vape -->
+      <div class="producto" id="Dummy-Vape">
+        <img src="img/dummy-vape.png" alt="Dummy Vape">
+        <div>
+          <h3>Dummy Vape</h3>
+          <p>Vape de diseño divertido, pantalla LED y sabores intensos.</p>
+          <label>Sabor:</label>
+          <select>
+            <option>Lush Ice</option>
+            <option>Lizzy Lemon</option>
+            <option>Dummy Dream</option>
+            <option>Gangsta Puch</option>
+          </select>
+          <p class="precio" style="font-weight:bold;">$200 MXN</p>
+          <button>Agregar al carrito</button>
+        </div>
+      </div>
+
+      <!-- Elf Bar -->
+      <div class="producto" id="Elf-Bar">
+        <img src="img/elf-bar.png" alt="Elf Bar">
+        <div>
+          <h3>Elf Bar</h3>
+          <p>Diseño compacto y sabores refrescantes.</p>
+          <label>Sabor:</label>
+          <select>
+            <option>Cool Mint</option>
+            <option>Mango Ice</option>
+            <option>Peach Ice</option>
+          </select>
+          <p class="precio" style="font-weight:bold;">$300 MXN</p>
+          <button>Agregar al carrito</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ——— Contacto ——— -->
+  <section id="contacto" style="text-align:center;padding:40px;">
+    <h2>Contacto</h2>
+    <p>¿Tienes dudas? Escríbenos por WhatsApp o Instagram.</p>
+    <p>📱 WhatsApp: 55‑1234‑5678</p>
+    <p>📸 Instagram: @auravape.mx</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Aura Vape. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- ——— Script del carrito y envío a WhatsApp ——— -->
+  <script>
+    const cart = [];
+    // Añadir cada producto al carrito
+    document.querySelectorAll('.producto').forEach(prod => {
+      const btn = prod.querySelector('button');
+      btn.addEventListener('click', () => {
+        const name   = prod.querySelector('h3').innerText.trim();
+        const flavor = prod.querySelector('select').value.trim();
+        const price  = prod.querySelector('.precio').innerText.trim();
+        cart.push({name, flavor, price});
+        // Actualizar contador
+        document.getElementById('cart-count').innerText = cart.length;
+        alert('Producto agregado al carrito');
+      });
+    });
+
+    // Enviar carrito por WhatsApp
+    document.getElementById('whatsapp-checkout').addEventListener('click', () => {
+      if (!cart.length) { alert('Tu carrito está vacío'); return; }
+
+      let total = 0;
+      let msg = 'Hola, quiero hacer un pedido:%0A';
+      cart.forEach(item => {
+        msg += '- ' + item.name + ' (' + item.flavor + ') ' + item.price + '%0A';
+        const num = parseFloat(item.price.replace(/[^0-9.]/g,''));
+        if(!isNaN(num)) total += num;
+      });
+      msg += '%0ATotal: $' + total + ' MXN';
+
+      // Número de WhatsApp: +52 5573878279
+      window.open('https://api.whatsapp.com/send?phone=525573878279&text=' + msg, '_blank');
+    });
+  </script>
+</body>
+</html>
