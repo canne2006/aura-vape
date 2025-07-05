@@ -49,7 +49,7 @@
       position: relative;
       width: 100%;
       height: 100vh;
-      background: url('portada.png') no-repeat center center/cover;
+      background: url('portada.png') no-repeat center center / cover;
     }
     .hero::after {
       content: "";
@@ -57,10 +57,11 @@
       top: 0; left: 0;
       width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.4);
+      pointer-events: none;
     }
 
     header {
-      background: #1f1f1f;
+      background-color: #1f1f1f;
       padding: 1rem;
       text-align: center;
       font-size: 2rem;
@@ -72,7 +73,7 @@
       display: flex;
       justify-content: center;
       gap: 1rem;
-      background: #222;
+      background-color: #222;
       padding: 1rem;
       flex-wrap: wrap;
     }
@@ -106,7 +107,7 @@
     }
 
     .product-card {
-      background: #222;
+      background-color: #222;
       border-radius: 10px;
       padding: 1rem;
       text-align: center;
@@ -142,6 +143,8 @@
       font-size: 0.9rem;
       color: #ccc;
       margin-bottom: 0.5rem;
+      display: block;
+      text-align: left;
     }
 
     select.sabores-select {
@@ -172,7 +175,7 @@
     footer {
       text-align: center;
       padding: 2rem;
-      background: #1f1f1f;
+      background-color: #1f1f1f;
       font-size: 0.9rem;
       color: #aaa;
     }
@@ -189,147 +192,150 @@
 <body>
 
   <!-- Filtro de edad -->
-  <div id="filtro-edad">
-    <h2>¡Advertencia!</h2>
+  <div id="filtro-edad" role="dialog" aria-modal="true" aria-labelledby="titulo-filtro-edad">
+    <h2 id="titulo-filtro-edad">¡Advertencia!</h2>
     <p>Este sitio es solo para mayores de 18 años.<br>¿Eres mayor de edad?</p>
-    <button onclick="aceptarEdad()">Sí, soy mayor de 18</button>
+    <button type="button" onclick="aceptarEdad()">Sí, soy mayor de 18</button>
   </div>
 
   <!-- Imagen de portada -->
-  <div class="hero"></div>
+  <div class="hero" role="img" aria-label="Portada Aura Vape"></div>
 
   <header>
     Aura Vape
   </header>
 
   <!-- Menú de marcas -->
-  <nav>
-    <a onclick="filtrarPorMarca('todos')">Todos</a>
-    <a onclick="filtrarPorMarca('Elfbar')">Elfbar</a>
-    <a onclick="filtrarPorMarca('Lost Vape')">Lost Vape</a>
-    <a onclick="filtrarPorMarca('V-Vape')">V-Vape</a>
-    <a onclick="filtrarPorMarca('Packspod')">Packspod</a>
-    <a onclick="filtrarPorMarca('Iplay')">Iplay</a>
-    <a onclick="filtrarPorMarca('Waka')">Waka</a>
-    <a onclick="filtrarPorMarca('Dummy Vapes')">Dummy Vapes</a>
+  <nav aria-label="Menú de marcas">
+    <a href="#" onclick="filtrarPorMarca('todos'); return false;">Todos</a>
+    <a href="#" onclick="filtrarPorMarca('Elfbar'); return false;">Elfbar</a>
+    <a href="#" onclick="filtrarPorMarca('Lost Vape'); return false;">Lost Vape</a>
+    <a href="#" onclick="filtrarPorMarca('V-Vape'); return false;">V-Vape</a>
+    <a href="#" onclick="filtrarPorMarca('Packspod'); return false;">Packspod</a>
+    <a href="#" onclick="filtrarPorMarca('Iplay'); return false;">Iplay</a>
+    <a href="#" onclick="filtrarPorMarca('Waka'); return false;">Waka</a>
+    <a href="#" onclick="filtrarPorMarca('Dummy Vapes'); return false;">Dummy Vapes</a>
   </nav>
 
   <!-- Sección de productos -->
-  <section>
-    <h2 class="section-title">Desechables</h2>
-    <div class="product-grid">
+  <main>
+    <section>
+      <h2 class="section-title">Desechables</h2>
+      <div class="product-grid">
 
-      <!-- Elfbar -->
-      <div class="product-card" data-marca="Elfbar">
-        <img src="elfbar.jpg" alt="Elfbar">
-        <div class="product-name">Elfbar</div>
-        <div class="product-flavors">Sabores: mango peach, cotton candy, strawberry banana</div>
-        <div class="product-price">$350 MXN</div>
-        <button class="add-cart" onclick="addToCart('Elfbar', 350)">Agregar al carrito</button>
+        <!-- Elfbar -->
+        <article class="product-card" data-marca="Elfbar">
+          <img src="elfbar.jpg" alt="Elfbar" />
+          <div class="product-name">Elfbar</div>
+          <div class="product-flavors">Sabores: mango peach, cotton candy, strawberry banana</div>
+          <div class="product-price">$350 MXN</div>
+          <button class="add-cart" type="button" onclick="addToCart('Elfbar', 350)">Agregar al carrito</button>
+        </article>
+
+        <!-- Lost Vape -->
+        <article class="product-card" data-marca="Lost Vape">
+          <img src="lost-vape.png" alt="Lost Vape" />
+          <div class="product-name">Lost Vape</div>
+          <label for="sabores-lost-vape" class="product-flavors">Sabores:</label>
+          <select id="sabores-lost-vape" class="sabores-select" name="sabores-lost-vape">
+            <option>Cool Mint</option>
+            <option>Summer Peach Ice</option>
+            <option>Blueberry Raspberry</option>
+          </select>
+          <div class="product-price">$250 MXN</div>
+          <button class="add-cart" type="button" onclick="addToCart('Lost Vape', 250, document.getElementById('sabores-lost-vape').value)">Agregar al carrito</button>
+        </article>
+
+        <!-- V-Vape -->
+        <article class="product-card" data-marca="V-Vape">
+          <img src="vvape.jpg" alt="V-Vape" />
+          <div class="product-name">V-Vape</div>
+          <label for="sabores-vvape" class="product-flavors">Sabores:</label>
+          <select id="sabores-vvape" class="sabores-select" name="sabores-vvape">
+            <option>berry rush</option>
+            <option>black mamba</option>
+            <option>blue razz bash</option>
+            <option>cherry pop</option>
+            <option>grape escape</option>
+            <option>merry berry</option>
+            <option>power up</option>
+          </select>
+          <div class="product-price">$350 MXN</div>
+          <button class="add-cart" type="button" onclick="addToCart('V-Vape', 350, document.getElementById('sabores-vvape').value)">Agregar al carrito</button>
+        </article>
+
+        <!-- Packspod -->
+        <article class="product-card" data-marca="Packspod">
+          <img src="packspod.png" alt="Packspod" />
+          <div class="product-name">Packspod</div>
+          <label for="sabores-packspod" class="product-flavors">Sabores:</label>
+          <select id="sabores-packspod" class="sabores-select" name="sabores-packspod">
+            <option>Mint</option>
+            <option>Strawberry</option>
+            <option>Coffee</option>
+          </select>
+          <div class="product-price">$230 MXN</div>
+          <button class="add-cart" type="button" onclick="addToCart('Packspod', 230, document.getElementById('sabores-packspod').value)">Agregar al carrito</button>
+        </article>
+
+        <!-- Iplay -->
+        <article class="product-card" data-marca="Iplay">
+          <img src="iplay.png" alt="Iplay" />
+          <div class="product-name">Iplay</div>
+          <label for="sabores-iplay" class="product-flavors">Sabores:</label>
+          <select id="sabores-iplay" class="sabores-select" name="sabores-iplay">
+            <option>Tropical Mango</option>
+            <option>Cool Mint</option>
+            <option>Berry Blast</option>
+          </select>
+          <div class="product-price">$280 MXN</div>
+          <button class="add-cart" type="button" onclick="addToCart('Iplay', 280, document.getElementById('sabores-iplay').value)">Agregar al carrito</button>
+        </article>
+
+        <!-- Waka -->
+        <article class="product-card" data-marca="Waka">
+          <img src="waka.png" alt="Waka" />
+          <div class="product-name">Waka</div>
+          <label for="sabores-waka" class="product-flavors">Sabores:</label>
+          <select id="sabores-waka" class="sabores-select" name="sabores-waka">
+            <option>Lychee Ice</option>
+            <option>Mango Pineapple</option>
+            <option>Watermelon</option>
+          </select>
+          <div class="product-price">$270 MXN</div>
+          <button class="add-cart" type="button" onclick="addToCart('Waka', 270, document.getElementById('sabores-waka').value)">Agregar al carrito</button>
+        </article>
+
+        <!-- Dummy Vapes -->
+        <article class="product-card" data-marca="Dummy Vapes">
+          <img src="dummy-vape.png" alt="Dummy Vapes" />
+          <div class="product-name">Dummy Vapes</div>
+          <label for="sabores-dummy" class="product-flavors">Sabores:</label>
+          <select id="sabores-dummy" class="sabores-select" name="sabores-dummy">
+            <option>Lush Ice</option>
+            <option>Lizzy Lemon</option>
+            <option>Dummy Dream</option>
+            <option>Gangsta Punch</option>
+          </select>
+          <div class="product-price">$200 MXN</div>
+          <button class="add-cart" type="button" onclick="addToCart('Dummy Vapes', 200, document.getElementById('sabores-dummy').value)">Agregar al carrito</button>
+        </article>
+
       </div>
-
-      <!-- Lost Vape -->
-      <div class="product-card" data-marca="Lost Vape">
-        <img src="lost-vape.png" alt="Lost Vape">
-        <div class="product-name">Lost Vape</div>
-        <label for="sabores-lost-vape" class="product-flavors">Sabores:</label>
-        <select id="sabores-lost-vape" class="sabores-select" name="sabores-lost-vape">
-          <option>Cool Mint</option>
-          <option>Summer Peach Ice</option>
-          <option>Blueberry Raspberry</option>
-        </select>
-        <div class="product-price">$250 MXN</div>
-        <button class="add-cart" onclick="addToCart('Lost Vape', 250, document.getElementById('sabores-lost-vape').value)">Agregar al carrito</button>
-      </div>
-
-      <!-- V-Vape -->
-      <div class="product-card" data-marca="V-Vape">
-        <img src="vvape.jpg" alt="V-Vape">
-        <div class="product-name">V-Vape</div>
-        <label for="sabores-vvape" class="product-flavors">Sabores:</label>
-        <select id="sabores-vvape" class="sabores-select" name="sabores-vvape">
-          <option>berry rush</option>
-          <option>black mamba</option>
-          <option>blue razz bash</option>
-          <option>cherry pop</option>
-          <option>grape escape</option>
-          <option>merry berry</option>
-          <option>power up</option>
-        </select>
-        <div class="product-price">$350 MXN</div>
-        <button class="add-cart" onclick="addToCart('V-Vape', 350, document.getElementById('sabores-vvape').value)">Agregar al carrito</button>
-      </div>
-
-      <!-- Packspod -->
-      <div class="product-card" data-marca="Packspod">
-        <img src="packspod.png" alt="Packspod">
-        <div class="product-name">Packspod</div>
-        <label for="sabores-packspod" class="product-flavors">Sabores:</label>
-        <select id="sabores-packspod" class="sabores-select" name="sabores-packspod">
-          <option>Mint</option>
-          <option>Strawberry</option>
-          <option>Coffee</option>
-        </select>
-        <div class="product-price">$230 MXN</div>
-        <button class="add-cart" onclick="addToCart('Packspod', 230, document.getElementById('sabores-packspod').value)">Agregar al carrito</button>
-      </div>
-
-      <!-- Iplay -->
-      <div class="product-card" data-marca="Iplay">
-        <img src="iplay.png" alt="Iplay">
-        <div class="product-name">Iplay</div>
-        <label for="sabores-iplay" class="product-flavors">Sabores:</label>
-        <select id="sabores-iplay" class="sabores-select" name="sabores-iplay">
-          <option>Tropical Mango</option>
-          <option>Cool Mint</option>
-          <option>Berry Blast</option>
-        </select>
-        <div class="product-price">$280 MXN</div>
-        <button class="add-cart" onclick="addToCart('Iplay', 280, document.getElementById('sabores-iplay').value)">Agregar al carrito</button>
-      </div>
-
-      <!-- Waka -->
-      <div class="product-card" data-marca="Waka">
-        <img src="waka.png" alt="Waka">
-        <div class="product-name">Waka</div>
-        <label for="sabores-waka" class="product-flavors">Sabores:</label>
-        <select id="sabores-waka" class="sabores-select" name="sabores-waka">
-          <option>Lychee Ice</option>
-          <option>Mango Pineapple</option>
-          <option>Watermelon</option>
-        </select>
-        <div class="product-price">$270 MXN</div>
-        <button class="add-cart" onclick="addToCart('Waka', 270, document.getElementById('sabores-waka').value)">Agregar al carrito</button>
-      </div>
-
-      <!-- Dummy Vapes -->
-      <div class="product-card" data-marca="Dummy Vapes">
-        <img src="dummy-vape.png" alt="Dummy Vapes">
-        <div class="product-name">Dummy Vapes</div>
-        <label for="sabores-dummy" class="product-flavors">Sabores:</label>
-        <select id="sabores-dummy" class="sabores-select" name="sabores-dummy">
-          <option>Lush Ice</option>
-          <option>Lizzy Lemon</option>
-          <option>Dummy Dream</option>
-          <option>Gangsta Punch</option>
-        </select>
-        <div class="product-price">$200 MXN</div>
-        <button class="add-cart" onclick="addToCart('Dummy Vapes', 200, document.getElementById('sabores-dummy').value)">Agregar al carrito</button>
-      </div>
-
-    </div>
-  </section>
+    </section>
+  </main>
 
   <!-- Pie de página -->
   <footer>
-    <p>Síguenos en Instagram: <a href="https://instagram.com/auravape" target="_blank" style="color:#00ffc8">@auravape</a></p>
+    <p>Síguenos en Instagram: <a href="https://instagram.com/auravape" target="_blank" rel="noopener noreferrer" style="color:#00ffc8">@auravape</a></p>
     <p>¿Tienes dudas o quieres comprar? Escríbenos por WhatsApp:</p>
-    <a href="https://wa.me/525573878279" class="whatsapp-link" target="_blank">Enviar mensaje a WhatsApp</a>
+    <a href="https://wa.me/525573878279" class="whatsapp-link" target="_blank" rel="noopener noreferrer">Enviar mensaje a WhatsApp</a>
   </footer>
 
   <script>
     function aceptarEdad() {
-      document.getElementById('filtro-edad').style.display = 'none';
+      const filtro = document.getElementById('filtro-edad');
+      filtro.style.display = 'none';
     }
 
     function filtrarPorMarca(marca) {
@@ -359,3 +365,6 @@
 
 </body>
 </html>
+
+ACTUALIZACION
+   
