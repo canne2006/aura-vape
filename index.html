@@ -3,103 +3,47 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aura Vape</title>
+  <title>Aura Vapes</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #111;
-      color: #fff;
-    }
-    header, nav, .products, footer {
-      padding: 20px;
-    }
-    header {
-      background: #222;
-      text-align: center;
-    }
-    nav {
-      background: #333;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-    }
-    nav button {
-      background: #555;
-      border: none;
-      padding: 10px;
-      color: white;
-      cursor: pointer;
-    }
-    nav button:hover {
-      background: #777;
-    }
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 15px;
-    }
-    .product {
-      background: #222;
-      padding: 15px;
-      border-radius: 10px;
-      text-align: center;
-    }
-    .product img {
-      max-width: 100%;
-      border-radius: 10px;
-      height: 150px;
-      object-fit: cover;
-    }
-    .product button {
-      background: #0f0;
-      border: none;
-      padding: 10px;
-      margin-top: 10px;
-      color: black;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    footer {
-      text-align: center;
-      background: #222;
-    }
-    .whatsapp, .instagram {
-      margin: 10px;
-      color: #0f0;
-      text-decoration: none;
-      font-weight: bold;
-    }
+    body { font-family: Arial, sans-serif; background: #111; color: white; margin: 0; }
+    header, nav, .products, footer { padding: 20px; text-align: center; }
+    header img { width: 100%; max-height: 300px; object-fit: cover; border-bottom: 3px solid #444; }
+
+    nav { background: #222; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+    nav button { background: #444; color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 5px; }
+    nav button:hover { background: #666; }
+
+    .products { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+    .product { background: #222; padding: 15px; width: 250px; border-radius: 10px; text-align: center; }
+    .product img { width: 100%; height: 150px; object-fit: cover; border-radius: 8px; }
+    .product button { background: #0f0; color: black; font-weight: bold; border: none; padding: 10px; margin-top: 10px; cursor: pointer; }
+
+    footer { background: #111; margin-top: 20px; }
+    .social a { color: #0f0; margin: 0 10px; text-decoration: none; }
+
     .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.95);
+      position: fixed; inset: 0; background: rgba(0,0,0,0.95); color: white;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
       z-index: 9999;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
     }
-    .overlay button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 18px;
-    }
+    .overlay button { margin-top: 20px; padding: 10px 20px; font-size: 18px; }
   </style>
 </head>
 <body>
 
+<!-- Filtro de edad -->
 <div class="overlay" id="ageCheck">
   <h2>¿Tienes más de 18 años?</h2>
   <button onclick="document.getElementById('ageCheck').style.display='none'">Sí, soy mayor de edad</button>
 </div>
 
+<!-- Cabecera -->
 <header>
-  <img src="https://i.imgur.com/LlzR8tU.jpg" alt="Aura Vape Portada" style="width:100%; max-height:300px; object-fit:cover;" />
-  <h1>Aura Vape</h1>
+  <img src="https://i.imgur.com/LlzR8tU.jpg" alt="Aura Vapes Portada" />
+  <h1>Aura Vapes</h1>
 </header>
 
+<!-- Menú de marcas -->
 <nav>
   <button onclick="filterBrand('all')">Todos</button>
   <button onclick="filterBrand('Lost Vape')">Lost Vape</button>
@@ -110,61 +54,61 @@
   <button onclick="filterBrand('V-Vape')">V-Vape</button>
 </nav>
 
+<!-- Productos -->
 <section class="products" id="productList">
-  <!-- V-Vape -->
   <div class="product" data-brand="V-Vape">
     <img src="https://i.imgur.com/BP9PyHX.jpg" alt="V-Vape">
     <h3>V-Vape - $350</h3>
-    <p>Sabores: Berry Rush, Black Mamba, Blue Razz Bash, Cherry Pop, Grape Escape, Merry Berry, Power Up</p>
+    <p>Berry Rush, Black Mamba, Blue Razz Bash</p>
     <button onclick="addToCart('V-Vape - $350')">Agregar al carrito</button>
   </div>
 
-  <!-- Dummy Vapes -->
   <div class="product" data-brand="Dummy Vapes">
-    <img src="https://i.imgur.com/1pPKwrO.jpg" alt="Dummy Vapes">
+    <img src="https://i.imgur.com/1pPKwrO.jpg" alt="Dummy">
     <h3>Dummy Vapes - $360</h3>
-    <p>Sabores: Strawberry Banana, Gummy Bear, Blue Razz, Watermelon Ice, Pineapple Peach, Cool Mint</p>
+    <p>Strawberry Banana, Blue Razz, Gummy Bear</p>
     <button onclick="addToCart('Dummy Vapes - $360')">Agregar al carrito</button>
   </div>
 
-  <!-- WAKA -->
   <div class="product" data-brand="WAKA">
     <img src="https://i.imgur.com/pgf4Kbl.jpg" alt="WAKA">
     <h3>WAKA - $370</h3>
-    <p>Sabores: Mango Peach, Banana Ice, Cola Ice, Grape Mint, Strawberry Ice Cream</p>
+    <p>Mango Peach, Banana Ice, Cola Ice</p>
     <button onclick="addToCart('WAKA - $370')">Agregar al carrito</button>
   </div>
 
-  <!-- Packspod -->
   <div class="product" data-brand="Packspod">
     <img src="https://i.imgur.com/Z3lWrJK.jpg" alt="Packspod">
     <h3>Packspod - $390</h3>
-    <p>Sabores: Peach Rings, Cotton Candy, Sour Apple, Cool Mint, Rainbow Skittles</p>
+    <p>Peach Rings, Cotton Candy, Sour Apple</p>
     <button onclick="addToCart('Packspod - $390')">Agregar al carrito</button>
   </div>
 
-  <!-- IPLAY -->
   <div class="product" data-brand="IPLAY">
     <img src="https://i.imgur.com/VXG0sFo.jpg" alt="IPLAY">
     <h3>IPLAY - $340</h3>
-    <p>Sabores: Mixed Berries, Cola Fizz, Lush Ice, Red Bull, Apple Peach</p>
+    <p>Mixed Berries, Cola Fizz, Lush Ice</p>
     <button onclick="addToCart('IPLAY - $340')">Agregar al carrito</button>
   </div>
 
-  <!-- Lost Vape -->
   <div class="product" data-brand="Lost Vape">
     <img src="https://i.imgur.com/vhcgB1j.jpg" alt="Lost Vape">
     <h3>Lost Vape - $400</h3>
-    <p>Sabores: Lemon Tart, Blueberry Muffin, Tobacco Vanilla, Menthol Ice</p>
+    <p>Lemon Tart, Blueberry Muffin, Tobacco Vanilla</p>
     <button onclick="addToCart('Lost Vape - $400')">Agregar al carrito</button>
   </div>
 </section>
 
+<!-- Pie de página -->
 <footer>
-  <a class="whatsapp" href="https://wa.me/5215573878279" target="_blank">💬 WhatsApp</a> |
-  <a class="instagram" href="https://instagram.com/auravape" target="_blank">📸 Instagram</a>
+  <div class="social">
+    <a href="https://wa.me/5215573878279" target="_blank">WhatsApp</a> |
+    <a href="https://instagram.com/auravape" target="_blank">Instagram</a>
+  </div>
+  <p>&copy; 2025 Aura Vapes</p>
 </footer>
 
+<!-- Scripts -->
 <script>
   const cart = [];
 
@@ -176,16 +120,11 @@
   function filterBrand(brand) {
     const products = document.querySelectorAll('.product');
     products.forEach(p => {
-      if (brand === 'all' || p.dataset.brand === brand) {
-        p.style.display = 'block';
-      } else {
-        p.style.display = 'none';
-      }
+      p.style.display = (brand === 'all' || p.dataset.brand === brand) ? 'block' : 'none';
     });
   }
 
-  // Enviar carrito a WhatsApp al salir de la página
-  window.addEventListener("beforeunload", function (e) {
+  window.addEventListener("beforeunload", function () {
     if (cart.length > 0) {
       const message = encodeURIComponent("Hola, quiero comprar:\n" + cart.join("\n"));
       window.open("https://wa.me/5215573878279?text=" + message, "_blank");
