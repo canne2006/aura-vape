@@ -49,6 +49,8 @@
     .product img {
       max-width: 100%;
       border-radius: 10px;
+      height: 150px;
+      object-fit: cover;
     }
     .product button {
       background: #0f0;
@@ -65,6 +67,9 @@
     }
     .whatsapp, .instagram {
       margin: 10px;
+      color: #0f0;
+      text-decoration: none;
+      font-weight: bold;
     }
     .overlay {
       position: fixed;
@@ -91,7 +96,7 @@
 </div>
 
 <header>
-  <img src="https://i.imgur.com/XXXXXXX.jpg" alt="Aura Vape Portada" style="width:100%; max-height:300px; object-fit:cover;" />
+  <img src="https://i.imgur.com/LlzR8tU.jpg" alt="Aura Vape Portada" style="width:100%; max-height:300px; object-fit:cover;" />
   <h1>Aura Vape</h1>
 </header>
 
@@ -106,14 +111,53 @@
 </nav>
 
 <section class="products" id="productList">
-  <!-- Producto ejemplo -->
+  <!-- V-Vape -->
   <div class="product" data-brand="V-Vape">
-    <img src="https://i.imgur.com/YOURIMAGE.jpg" alt="V-Vape" />
+    <img src="https://i.imgur.com/BP9PyHX.jpg" alt="V-Vape">
     <h3>V-Vape - $350</h3>
     <p>Sabores: Berry Rush, Black Mamba, Blue Razz Bash, Cherry Pop, Grape Escape, Merry Berry, Power Up</p>
     <button onclick="addToCart('V-Vape - $350')">Agregar al carrito</button>
   </div>
-  <!-- Repite este bloque para cada producto -->
+
+  <!-- Dummy Vapes -->
+  <div class="product" data-brand="Dummy Vapes">
+    <img src="https://i.imgur.com/1pPKwrO.jpg" alt="Dummy Vapes">
+    <h3>Dummy Vapes - $360</h3>
+    <p>Sabores: Strawberry Banana, Gummy Bear, Blue Razz, Watermelon Ice, Pineapple Peach, Cool Mint</p>
+    <button onclick="addToCart('Dummy Vapes - $360')">Agregar al carrito</button>
+  </div>
+
+  <!-- WAKA -->
+  <div class="product" data-brand="WAKA">
+    <img src="https://i.imgur.com/pgf4Kbl.jpg" alt="WAKA">
+    <h3>WAKA - $370</h3>
+    <p>Sabores: Mango Peach, Banana Ice, Cola Ice, Grape Mint, Strawberry Ice Cream</p>
+    <button onclick="addToCart('WAKA - $370')">Agregar al carrito</button>
+  </div>
+
+  <!-- Packspod -->
+  <div class="product" data-brand="Packspod">
+    <img src="https://i.imgur.com/Z3lWrJK.jpg" alt="Packspod">
+    <h3>Packspod - $390</h3>
+    <p>Sabores: Peach Rings, Cotton Candy, Sour Apple, Cool Mint, Rainbow Skittles</p>
+    <button onclick="addToCart('Packspod - $390')">Agregar al carrito</button>
+  </div>
+
+  <!-- IPLAY -->
+  <div class="product" data-brand="IPLAY">
+    <img src="https://i.imgur.com/VXG0sFo.jpg" alt="IPLAY">
+    <h3>IPLAY - $340</h3>
+    <p>Sabores: Mixed Berries, Cola Fizz, Lush Ice, Red Bull, Apple Peach</p>
+    <button onclick="addToCart('IPLAY - $340')">Agregar al carrito</button>
+  </div>
+
+  <!-- Lost Vape -->
+  <div class="product" data-brand="Lost Vape">
+    <img src="https://i.imgur.com/vhcgB1j.jpg" alt="Lost Vape">
+    <h3>Lost Vape - $400</h3>
+    <p>Sabores: Lemon Tart, Blueberry Muffin, Tobacco Vanilla, Menthol Ice</p>
+    <button onclick="addToCart('Lost Vape - $400')">Agregar al carrito</button>
+  </div>
 </section>
 
 <footer>
@@ -151,10 +195,3 @@
 
 </body>
 </html>
-
-
-   
-
-   
-   
-      
