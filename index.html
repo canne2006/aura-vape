@@ -2,369 +2,159 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aura Vape</title>
   <style>
     body {
       font-family: Arial, sans-serif;
+      margin: 0;
       background: #111;
       color: #fff;
-      margin: 0;
-      padding: 0;
     }
-
-    /* Filtro de edad */
-    #filtro-edad {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100vh;
-      background: rgba(0, 0, 0, 0.95);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
+    header, nav, .products, footer {
+      padding: 20px;
     }
-    #filtro-edad h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    #filtro-edad p {
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-    #filtro-edad button {
-      padding: 10px 20px;
-      background: #00ffc8;
-      color: #000;
-      font-weight: bold;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    /* Portada */
-    .hero {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      background: url('portada.png') no-repeat center center / cover;
-    }
-    .hero::after {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.4);
-      pointer-events: none;
-    }
-
     header {
-      background-color: #1f1f1f;
-      padding: 1rem;
+      background: #222;
       text-align: center;
-      font-size: 2rem;
-      font-weight: bold;
-      color: #00ffc8;
     }
-
     nav {
+      background: #333;
       display: flex;
-      justify-content: center;
-      gap: 1rem;
-      background-color: #222;
-      padding: 1rem;
       flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
     }
-
-    nav a {
-      color: #00ffc8;
-      text-decoration: none;
-      font-weight: bold;
+    nav button {
+      background: #555;
+      border: none;
+      padding: 10px;
+      color: white;
       cursor: pointer;
-      padding: 0.3rem 0.8rem;
-      border-radius: 4px;
-      transition: background-color 0.3s;
     }
-    nav a:hover {
-      background-color: #00ffc8;
-      color: #000;
+    nav button:hover {
+      background: #777;
     }
-
-    .section-title {
-      text-align: center;
-      margin: 2rem 0 1rem;
-      color: #00ffc8;
-      font-size: 1.5rem;
-    }
-
-    .product-grid {
+    .products {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-      padding: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
     }
-
-    .product-card {
-      background-color: #222;
+    .product {
+      background: #222;
+      padding: 15px;
       border-radius: 10px;
-      padding: 1rem;
       text-align: center;
-      box-shadow: 0 0 8px #00ffc8;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
     }
-
-    .product-card img {
-      width: 100%;
+    .product img {
+      max-width: 100%;
       border-radius: 10px;
-      max-height: 180px;
-      object-fit: cover;
-      margin-bottom: 0.7rem;
     }
-
-    .product-name {
-      font-size: 1.2rem;
-      margin: 0.5rem 0;
-      font-weight: bold;
-      color: #00ffc8;
-    }
-
-    .product-price {
-      color: #0f0;
-      margin: 0.5rem 0;
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
-
-    .product-flavors {
-      font-size: 0.9rem;
-      color: #ccc;
-      margin-bottom: 0.5rem;
-      display: block;
-      text-align: left;
-    }
-
-    select.sabores-select {
-      width: 100%;
-      padding: 0.3rem;
-      border-radius: 5px;
+    .product button {
+      background: #0f0;
       border: none;
-      margin-bottom: 0.8rem;
+      padding: 10px;
+      margin-top: 10px;
+      color: black;
       font-weight: bold;
       cursor: pointer;
     }
-
-    .add-cart {
-      padding: 0.6rem 1rem;
-      background: #00ffc8;
-      color: #000;
-      border: none;
-      border-radius: 5px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .add-cart:hover {
-      background: #00bfa5;
-      color: #fff;
-    }
-
     footer {
       text-align: center;
-      padding: 2rem;
-      background-color: #1f1f1f;
-      font-size: 0.9rem;
-      color: #aaa;
+      background: #222;
     }
-
-    .whatsapp-link {
-      display: inline-block;
-      margin-top: 0.5rem;
-      color: #25D366;
-      font-weight: bold;
-      text-decoration: none;
+    .whatsapp, .instagram {
+      margin: 10px;
+    }
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .overlay button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 18px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Filtro de edad -->
-  <div id="filtro-edad" role="dialog" aria-modal="true" aria-labelledby="titulo-filtro-edad">
-    <h2 id="titulo-filtro-edad">¡Advertencia!</h2>
-    <p>Este sitio es solo para mayores de 18 años.<br>¿Eres mayor de edad?</p>
-    <button type="button" onclick="aceptarEdad()">Sí, soy mayor de 18</button>
+<div class="overlay" id="ageCheck">
+  <h2>¿Tienes más de 18 años?</h2>
+  <button onclick="document.getElementById('ageCheck').style.display='none'">Sí, soy mayor de edad</button>
+</div>
+
+<header>
+  <img src="https://i.imgur.com/XXXXXXX.jpg" alt="Aura Vape Portada" style="width:100%; max-height:300px; object-fit:cover;" />
+  <h1>Aura Vape</h1>
+</header>
+
+<nav>
+  <button onclick="filterBrand('all')">Todos</button>
+  <button onclick="filterBrand('Lost Vape')">Lost Vape</button>
+  <button onclick="filterBrand('IPLAY')">IPLAY</button>
+  <button onclick="filterBrand('Packspod')">Packspod</button>
+  <button onclick="filterBrand('WAKA')">WAKA</button>
+  <button onclick="filterBrand('Dummy Vapes')">Dummy Vapes</button>
+  <button onclick="filterBrand('V-Vape')">V-Vape</button>
+</nav>
+
+<section class="products" id="productList">
+  <!-- Producto ejemplo -->
+  <div class="product" data-brand="V-Vape">
+    <img src="https://i.imgur.com/YOURIMAGE.jpg" alt="V-Vape" />
+    <h3>V-Vape - $350</h3>
+    <p>Sabores: Berry Rush, Black Mamba, Blue Razz Bash, Cherry Pop, Grape Escape, Merry Berry, Power Up</p>
+    <button onclick="addToCart('V-Vape - $350')">Agregar al carrito</button>
   </div>
+  <!-- Repite este bloque para cada producto -->
+</section>
 
-  <!-- Imagen de portada -->
-  <div class="hero" role="img" aria-label="Portada Aura Vape"></div>
+<footer>
+  <a class="whatsapp" href="https://wa.me/5215573878279" target="_blank">💬 WhatsApp</a> |
+  <a class="instagram" href="https://instagram.com/auravape" target="_blank">📸 Instagram</a>
+</footer>
 
-  <header>
-    Aura Vape
-  </header>
+<script>
+  const cart = [];
 
-  <!-- Menú de marcas -->
-  <nav aria-label="Menú de marcas">
-    <a href="#" onclick="filtrarPorMarca('todos'); return false;">Todos</a>
-    <a href="#" onclick="filtrarPorMarca('Elfbar'); return false;">Elfbar</a>
-    <a href="#" onclick="filtrarPorMarca('Lost Vape'); return false;">Lost Vape</a>
-    <a href="#" onclick="filtrarPorMarca('V-Vape'); return false;">V-Vape</a>
-    <a href="#" onclick="filtrarPorMarca('Packspod'); return false;">Packspod</a>
-    <a href="#" onclick="filtrarPorMarca('Iplay'); return false;">Iplay</a>
-    <a href="#" onclick="filtrarPorMarca('Waka'); return false;">Waka</a>
-    <a href="#" onclick="filtrarPorMarca('Dummy Vapes'); return false;">Dummy Vapes</a>
-  </nav>
+  function addToCart(item) {
+    cart.push(item);
+    alert(item + " agregado al carrito.");
+  }
 
-  <!-- Sección de productos -->
-  <main>
-    <section>
-      <h2 class="section-title">Desechables</h2>
-      <div class="product-grid">
-
-        <!-- Elfbar -->
-        <article class="product-card" data-marca="Elfbar">
-          <img src="elfbar.jpg" alt="Elfbar" />
-          <div class="product-name">Elfbar</div>
-          <div class="product-flavors">Sabores: mango peach, cotton candy, strawberry banana</div>
-          <div class="product-price">$350 MXN</div>
-          <button class="add-cart" type="button" onclick="addToCart('Elfbar', 350)">Agregar al carrito</button>
-        </article>
-
-        <!-- Lost Vape -->
-        <article class="product-card" data-marca="Lost Vape">
-          <img src="lost-vape.png" alt="Lost Vape" />
-          <div class="product-name">Lost Vape</div>
-          <label for="sabores-lost-vape" class="product-flavors">Sabores:</label>
-          <select id="sabores-lost-vape" class="sabores-select" name="sabores-lost-vape">
-            <option>Cool Mint</option>
-            <option>Summer Peach Ice</option>
-            <option>Blueberry Raspberry</option>
-          </select>
-          <div class="product-price">$250 MXN</div>
-          <button class="add-cart" type="button" onclick="addToCart('Lost Vape', 250, document.getElementById('sabores-lost-vape').value)">Agregar al carrito</button>
-        </article>
-
-        <!-- V-Vape -->
-        <article class="product-card" data-marca="V-Vape">
-          <img src="vvape.jpg" alt="V-Vape" />
-          <div class="product-name">V-Vape</div>
-          <label for="sabores-vvape" class="product-flavors">Sabores:</label>
-          <select id="sabores-vvape" class="sabores-select" name="sabores-vvape">
-            <option>berry rush</option>
-            <option>black mamba</option>
-            <option>blue razz bash</option>
-            <option>cherry pop</option>
-            <option>grape escape</option>
-            <option>merry berry</option>
-            <option>power up</option>
-          </select>
-          <div class="product-price">$350 MXN</div>
-          <button class="add-cart" type="button" onclick="addToCart('V-Vape', 350, document.getElementById('sabores-vvape').value)">Agregar al carrito</button>
-        </article>
-
-        <!-- Packspod -->
-        <article class="product-card" data-marca="Packspod">
-          <img src="packspod.png" alt="Packspod" />
-          <div class="product-name">Packspod</div>
-          <label for="sabores-packspod" class="product-flavors">Sabores:</label>
-          <select id="sabores-packspod" class="sabores-select" name="sabores-packspod">
-            <option>Mint</option>
-            <option>Strawberry</option>
-            <option>Coffee</option>
-          </select>
-          <div class="product-price">$230 MXN</div>
-          <button class="add-cart" type="button" onclick="addToCart('Packspod', 230, document.getElementById('sabores-packspod').value)">Agregar al carrito</button>
-        </article>
-
-        <!-- Iplay -->
-        <article class="product-card" data-marca="Iplay">
-          <img src="iplay.png" alt="Iplay" />
-          <div class="product-name">Iplay</div>
-          <label for="sabores-iplay" class="product-flavors">Sabores:</label>
-          <select id="sabores-iplay" class="sabores-select" name="sabores-iplay">
-            <option>Tropical Mango</option>
-            <option>Cool Mint</option>
-            <option>Berry Blast</option>
-          </select>
-          <div class="product-price">$280 MXN</div>
-          <button class="add-cart" type="button" onclick="addToCart('Iplay', 280, document.getElementById('sabores-iplay').value)">Agregar al carrito</button>
-        </article>
-
-        <!-- Waka -->
-        <article class="product-card" data-marca="Waka">
-          <img src="waka.png" alt="Waka" />
-          <div class="product-name">Waka</div>
-          <label for="sabores-waka" class="product-flavors">Sabores:</label>
-          <select id="sabores-waka" class="sabores-select" name="sabores-waka">
-            <option>Lychee Ice</option>
-            <option>Mango Pineapple</option>
-            <option>Watermelon</option>
-          </select>
-          <div class="product-price">$270 MXN</div>
-          <button class="add-cart" type="button" onclick="addToCart('Waka', 270, document.getElementById('sabores-waka').value)">Agregar al carrito</button>
-        </article>
-
-        <!-- Dummy Vapes -->
-        <article class="product-card" data-marca="Dummy Vapes">
-          <img src="dummy-vape.png" alt="Dummy Vapes" />
-          <div class="product-name">Dummy Vapes</div>
-          <label for="sabores-dummy" class="product-flavors">Sabores:</label>
-          <select id="sabores-dummy" class="sabores-select" name="sabores-dummy">
-            <option>Lush Ice</option>
-            <option>Lizzy Lemon</option>
-            <option>Dummy Dream</option>
-            <option>Gangsta Punch</option>
-          </select>
-          <div class="product-price">$200 MXN</div>
-          <button class="add-cart" type="button" onclick="addToCart('Dummy Vapes', 200, document.getElementById('sabores-dummy').value)">Agregar al carrito</button>
-        </article>
-
-      </div>
-    </section>
-  </main>
-
-  <!-- Pie de página -->
-  <footer>
-    <p>Síguenos en Instagram: <a href="https://instagram.com/auravape" target="_blank" rel="noopener noreferrer" style="color:#00ffc8">@auravape</a></p>
-    <p>¿Tienes dudas o quieres comprar? Escríbenos por WhatsApp:</p>
-    <a href="https://wa.me/525573878279" class="whatsapp-link" target="_blank" rel="noopener noreferrer">Enviar mensaje a WhatsApp</a>
-  </footer>
-
-  <script>
-    function aceptarEdad() {
-      const filtro = document.getElementById('filtro-edad');
-      filtro.style.display = 'none';
-    }
-
-    function filtrarPorMarca(marca) {
-      const productos = document.querySelectorAll('.product-card');
-      productos.forEach(p => {
-        const marcaProducto = p.getAttribute('data-marca');
-        if (marca === 'todos' || marcaProducto === marca) {
-          p.style.display = 'flex';
-        } else {
-          p.style.display = 'none';
-        }
-      });
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function addToCart(product, price, sabor = '') {
-      let mensaje = `Hola, quiero comprar: ${product}`;
-      if (sabor) {
-        mensaje += ` - Sabor: ${sabor}`;
+  function filterBrand(brand) {
+    const products = document.querySelectorAll('.product');
+    products.forEach(p => {
+      if (brand === 'all' || p.dataset.brand === brand) {
+        p.style.display = 'block';
+      } else {
+        p.style.display = 'none';
       }
-      mensaje += ` - $${price} MXN`;
-      const phone = '525573878279';
-      const url = `https://wa.me/${phone}?text=${encodeURIComponent(mensaje)}`;
-      window.open(url, '_blank');
+    });
+  }
+
+  // Enviar carrito a WhatsApp al salir de la página
+  window.addEventListener("beforeunload", function (e) {
+    if (cart.length > 0) {
+      const message = encodeURIComponent("Hola, quiero comprar:\n" + cart.join("\n"));
+      window.open("https://wa.me/5215573878279?text=" + message, "_blank");
     }
-  </script>
+  });
+</script>
 
 </body>
 </html>
 
-ACTUALIZACION
+
    
+
+   
+   
+      
