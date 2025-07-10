@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Aura Vape</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
       font-family: Arial, sans-serif;
       background-color: #000;
@@ -39,9 +43,11 @@
     /* Filtro de edad */
     #filtro-edad {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -52,7 +58,7 @@
       margin-top: 20px;
       padding: 10px 30px;
       font-size: 1.2rem;
-      background: #25D366;
+      background: #25d366;
       border: none;
       border-radius: 10px;
       color: white;
@@ -87,15 +93,27 @@
     .producto img {
       width: 100%;
       border-radius: 8px;
+      max-height: 150px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+    .producto select {
+      margin-top: 8px;
+      padding: 6px;
+      border-radius: 6px;
+      border: none;
+      width: 100%;
+      font-size: 1rem;
     }
     .producto button {
-      margin-top: 10px;
+      margin-top: 12px;
       padding: 8px 15px;
-      background: #25D366;
+      background: #25d366;
       border: none;
       color: white;
       border-radius: 8px;
       cursor: pointer;
+      font-weight: bold;
     }
 
     /* Carrito */
@@ -103,11 +121,13 @@
       position: fixed;
       top: 20px;
       right: 20px;
-      background: #25D366;
+      background: #25d366;
       color: white;
       padding: 10px 20px;
       border-radius: 30px;
       z-index: 99;
+      font-weight: bold;
+      user-select: none;
     }
 
     /* Contacto */
@@ -137,7 +157,7 @@
     }
     .faq-item h4 {
       margin-bottom: 10px;
-      color: #25D366;
+      color: #25d366;
     }
 
     /* Footer */
@@ -154,11 +174,15 @@
   <!-- Filtro de Edad -->
   <div id="filtro-edad">
     <h2>¿Tienes más de 18 años?</h2>
-    <button onclick="document.getElementById('filtro-edad').style.display='none'">Sí, soy mayor de edad</button>
+    <button onclick="document.getElementById('filtro-edad').style.display='none'">
+      Sí, soy mayor de edad
+    </button>
   </div>
 
   <!-- Carrito -->
-  <div id="carrito">Carrito 🛒 <span id="contador">0</span></div>
+  <div id="carrito">
+    Carrito 🛒 <span id="contador">0</span>
+  </div>
 
   <!-- Portada -->
   <div class="portada">
@@ -167,79 +191,137 @@
 
   <!-- Buscador -->
   <section class="busqueda">
-    <input type="text" id="buscador" onkeyup="buscarProductos()" placeholder="Buscar productos...">
+    <input
+      type="text"
+      id="buscador"
+      onkeyup="buscarProductos()"
+      placeholder="Buscar productos..."
+    />
   </section>
 
   <!-- Productos -->
   <section class="productos" id="lista-productos">
     <div class="producto">
-      <img src="enoubar.png" alt="Enoubar">
+      <img src="enoubar.png" alt="Enoubar" />
       <h4>Enoubar - $200</h4>
-      <p>Sabores:<br>Watermelon Bubblegum<br>Blue Razz Ice<br>Strawberry Mango<br>Tropical Rainbow<br>Big Bang</p>
-      <button onclick="agregarAlCarrito()">Agregar</button>
+      <label for="sabores-enoubar">Sabores:</label><br />
+      <select id="sabores-enoubar">
+        <option>Watermelon Bubblegum</option>
+        <option>Blue Razz Ice</option>
+        <option>Strawberry Mango</option>
+        <option>Tropical Rainbow</option>
+        <option>Big Bang</option>
+      </select>
+      <button
+        onclick="agregarAlCarrito('Enoubar', 200, document.getElementById('sabores-enoubar').value)"
+      >
+        Agregar
+      </button>
     </div>
-    <div class="producto">
-      <img src="vplay.png" alt="V-Play">
-      <h4>V-Play - $350</h4>
-      <p>Sabores:<br>Strawbeet Fun-Ta<br>Power Up<br>Strawgo<br>Vegas Delight<br>Mintastic</p>
-      <button onclick="agregarAlCarrito()">Agregar</button>
-    </div>
-    <div class="producto">
-      <img src="dummy.png" alt="Dummy">
-      <h4>Dummy - $250</h4>
-      <p>Sabores:<br>Banana Ice<br>Cool Mint<br>Gummy Bear<br>Peach Ice<br>Mixed Berries</p>
-      <button onclick="agregarAlCarrito()">Agregar</button>
-    </div>
-    <section class="productos" id="lista-productos">
-  <div class="producto">
-    <img src="enoubar.png" alt="Enoubar">
-    <h4>Enoubar - $200</h4>
-    <p>Sabores:<br>Watermelon Bubblegum<br>Blue Razz Ice<br>Strawberry Mango<br>Tropical Rainbow<br>Big Bang</p>
-    <button onclick="agregarAlCarrito()">Agregar</button>
-  </div>
-  <div class="producto">
-    <img src="vplay.png" alt="V-Play">
-    <h4>V-Play - $350</h4>
-    <p>Sabores:<br>Strawbeet Fun-Ta<br>Power Up<br>Strawgo<br>Vegas Delight<br>Mintastic</p>
-    <button onclick="agregarAlCarrito()">Agregar</button>
-  </div>
-  <div class="producto">
-    <img src="dummy.png" alt="Dummy">
-    <h4>Dummy - $250</h4>
-    <p>Sabores:<br>Banana Ice<br>Cool Mint<br>Gummy Bear<br>Peach Ice<br>Mixed Berries</p>
-    <button onclick="agregarAlCarrito()">Agregar</button>
-  </div>
-  <div class="producto">
-    <img src="packspod.png" alt="Packspod">
-    <h4>Packspod - $300</h4>
-    <p>Sabores:<br>Cola<br>Peach Ice<br>Mint<br>Mixed Berries<br>Melon Ice</p>
-    <button onclick="agregarAlCarrito()">Agregar</button>
-  </div>
-  <div class="producto">
-    <img src="lostvape.png" alt="Lost Vape">
-    <h4>Lost Vape - $400</h4>
-    <p>Sabores:<br>Tobacco<br>Cool Mint<br>Mango<br>Strawberry Ice<br>Grape</p>
-    <button onclick="agregarAlCarrito()">Agregar</button>
-  </div>
-  <div class="producto">
-    <img src="vvape.png" alt="V Vape">
-    <h4>V Vape - $220</h4>
-    <p>Sabores:<br>Mint<br>Watermelon<br>Peach<br>Strawberry<br>Cola</p>
-    <button onclick="agregarAlCarrito()">Agregar</button>
-  </div>
-  <div class="producto">
-    <img src="waka.png" alt="Waka"
 
+    <div class="producto">
+      <img src="vplay.png" alt="V-Play" />
+      <h4>V-Play - $350</h4>
+      <label for="sabores-vplay">Sabores:</label><br />
+      <select id="sabores-vplay">
+        <option>Strawbeet Fun-Ta</option>
+        <option>Power Up</option>
+        <option>Strawgo</option>
+        <option>Vegas Delight</option>
+        <option>Mintastic</option>
+      </select>
+      <button
+        onclick="agregarAlCarrito('V-Play', 350, document.getElementById('sabores-vplay').value)"
+      >
+        Agregar
+      </button>
+    </div>
+
+    <div class="producto">
+      <img src="dummy.png" alt="Dummy" />
+      <h4>Dummy - $250</h4>
+      <label for="sabores-dummy">Sabores:</label><br />
+      <select id="sabores-dummy">
+        <option>Banana Ice</option>
+        <option>Cool Mint</option>
+        <option>Gummy Bear</option>
+        <option>Peach Ice</option>
+        <option>Mixed Berries</option>
+      </select>
+      <button
+        onclick="agregarAlCarrito('Dummy', 250, document.getElementById('sabores-dummy').value)"
+      >
+        Agregar
+      </button>
+    </div>
+
+    <div class="producto">
+      <img src="packspod.png" alt="Packspod" />
+      <h4>Packspod - $250</h4>
+      <label for="sabores-packspod">Sabores:</label><br />
+      <select id="sabores-packspod">
+        <option>Cola</option>
+        <option>Peach Ice</option>
+        <option>Mint</option>
+        <option>Mixed Berries</option>
+        <option>Melon Ice</option>
+      </select>
+      <button
+        onclick="agregarAlCarrito('Packspod', 250, document.getElementById('sabores-packspod').value)"
+      >
+        Agregar
+      </button>
+    </div>
+
+    <div class="producto">
+      <img src="lostvape.png" alt="Lost Vape" />
+      <h4>Lost Vape - $250</h4>
+      <label for="sabores-lostvape">Sabores:</label><br />
+      <select id="sabores-lostvape">
+        <option>Tobacco</option>
+        <option>Cool Mint</option>
+        <option>Mango</option>
+        <option>Strawberry Ice</option>
+        <option>Grape</option>
+      </select>
+      <button
+        onclick="agregarAlCarrito('Lost Vape', 250, document.getElementById('sabores-lostvape').value)"
+      >
+        Agregar
+      </button>
+    </div>
+
+    
+    
+        Agregar
+      </button>
+    </div>
   </section>
 
   <!-- Contacto -->
   <section id="contacto">
     <h2>Contacto</h2>
     <div class="contacto-info">
-      <p>📍 Dirección: Calle Vape 123, CDMX</p>
-      <p>📞 WhatsApp: <a href="https://wa.me/5215555555555" target="_blank" style="color:#25D366;">+52 1 555 555 5555</a></p>
-      <p>✉️ Correo: <a href="mailto:contacto@auravape.com" style="color:#25D366;">contacto@auravape.com</a></p>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3..." allowfullscreen></iframe>
+      <p>📍 Dirección: CDMX</p>
+      <p>
+        📞 WhatsApp:
+        <a
+          href="https://wa.me/5573878279"
+          target="_blank"
+          style="color:#25d366;"
+          >+52 5573878279</a
+        >
+      </p>
+      <p>
+        ✉️ Correo:
+        <a href="mailto:contacto@auravape.com" style="color:#25d366;"
+          >contacto@auravape.com</a
+        >
+      </p>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3..."
+        allowfullscreen
+      ></iframe>
     </div>
   </section>
 
@@ -267,21 +349,23 @@
   </section>
 
   <!-- Footer -->
-  <footer>
-    &copy; 2025 Aura Vape. Todos los derechos reservados.
-  </footer>
+  <footer>&copy; 2025 Aura Vape. Todos los derechos reservados.</footer>
 
   <script>
     let contador = 0;
-    function agregarAlCarrito() {
+
+    function agregarAlCarrito(marca, precio, sabor) {
       contador++;
       document.getElementById('contador').innerText = contador;
+      alert(
+        `Agregaste al carrito:\nProducto: ${marca}\nSabor: ${sabor}\nPrecio: $${precio}`
+      );
     }
 
     function buscarProductos() {
       let input = document.getElementById('buscador').value.toLowerCase();
       let productos = document.querySelectorAll('.producto');
-      productos.forEach(prod => {
+      productos.forEach((prod) => {
         const texto = prod.innerText.toLowerCase();
         prod.style.display = texto.includes(input) ? 'block' : 'none';
       });
