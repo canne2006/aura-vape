@@ -1,374 +1,278 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aura Vape</title>
+
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #000;
+        color: white;
     }
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #000;
-      color: #fff;
+
+    /* Modal de edad */
+    #ageModal {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        z-index: 9999;
     }
-    section {
-      padding: 60px 20px;
+    #ageModal button {
+        margin-top: 10px;
+        padding: 12px 20px;
+        font-size: 18px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        width: 200px;
     }
-    h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 30px;
+    #btn18 { background: #4CAF50; color: white; }
+    #btnMinor { background: #b30000; color: white; }
+
+    /* Logo esquina */
+    #header {
+        position: absolute;
+        top: 15px; left: 20px;
+        font-size: 20px;
+        font-weight: bold;
+        z-index: 20;
     }
 
     /* Portada */
-    .portada {
-      height: 100vh;
-      background: url('CDC0C05A-6244-4176-A27B-A41E836DDCDA.png') center center / cover no-repeat;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-    .portada h1 {
-      background: rgba(0, 0, 0, 0.5);
-      padding: 1rem 2rem;
-      border-radius: 20px;
-      font-size: 3rem;
+    #hero {
+        width: 100%;
+        height: 100vh;
+        background: url('PORTADA-AQUI.png') no-repeat center/cover;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 180px;
+        flex-direction: column;
+        text-align: left;
+        padding-left: 20px;
     }
 
-    /* Filtro de edad */
-    #filtro-edad {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.9);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      flex-direction: column;
+    /* Botones mayoreo / menudeo */
+    .main-buttons {
+        margin-top: 20px;
     }
-    #filtro-edad button {
-      margin-top: 20px;
-      padding: 10px 30px;
-      font-size: 1.2rem;
-      background: #25d366;
-      border: none;
-      border-radius: 10px;
-      color: white;
-      cursor: pointer;
+    .main-buttons button {
+        padding: 14px 26px;
+        background: white;
+        color: black;
+        border: none;
+        border-radius: 8px;
+        margin: 10px;
+        font-size: 20px;
+        cursor: pointer;
     }
 
-    /* Barra de búsqueda */
-    .busqueda {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    .busqueda input {
-      padding: 10px;
-      width: 80%;
-      max-width: 400px;
-      border-radius: 10px;
-      border: none;
-    }
+    /* Secciones ocultables */
+    .section { display: none; padding: 20px; }
 
-    /* Productos */
-    .productos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
+    /* Producto */
+    .product {
+        background: #111;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
     }
-    .producto {
-      background: #111;
-      padding: 15px;
-      border-radius: 10px;
-      text-align: center;
+    .product img {
+        width: 140px;
+        border-radius: 12px;
     }
-    .producto img {
-      width: 100%;
-      border-radius: 8px;
-      max-height: 150px;
-      object-fit: contain;
-      margin-bottom: 10px;
-    }
-    .producto select {
-      margin-top: 8px;
-      padding: 6px;
-      border-radius: 6px;
-      border: none;
-      width: 100%;
-      font-size: 1rem;
-    }
-    .producto button {
-      margin-top: 12px;
-      padding: 8px 15px;
-      background: #25d366;
-      border: none;
-      color: white;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
+    .product button {
+        background: #008CBA;
+        color: white;
+        border: none;
+        padding: 10px 18px;
+        border-radius: 6px;
+        cursor: pointer;
     }
 
     /* Carrito */
-    #carrito {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #25d366;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 30px;
-      z-index: 99;
-      font-weight: bold;
-      user-select: none;
+    #cartIcon {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        font-size: 28px;
+        cursor: pointer;
+        z-index: 30;
     }
 
-    /* Contacto */
-    .contacto-info {
-      text-align: center;
-      line-height: 2rem;
-    }
-    iframe {
-      width: 100%;
-      max-width: 600px;
-      height: 300px;
-      margin-top: 20px;
-      border: 0;
-      border-radius: 15px;
+    #cartPanel {
+        position: fixed;
+        top: 0; right: -400px;
+        width: 350px;
+        height: 100%;
+        background: #111;
+        padding: 20px;
+        transition: .3s;
+        z-index: 50;
+        overflow-y: auto;
     }
 
-    /* FAQ */
-    .faq {
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .faq-item {
-      margin-bottom: 20px;
-      background-color: #111;
-      padding: 15px;
-      border-radius: 10px;
-    }
-    .faq-item h4 {
-      margin-bottom: 10px;
-      color: #25d366;
+    #cartPanel h2 { margin-top: 0; }
+
+    #checkoutBtn {
+        background: #25D366;
+        padding: 12px;
+        width: 100%;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        margin-top: 20px;
+        cursor: pointer;
     }
 
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #111;
-      color: #777;
-      font-size: 0.9rem;
-    }
-  </style>
+</style>
 </head>
 <body>
-  <!-- Filtro de Edad -->
-  <div id="filtro-edad">
-    <h2>¿Tienes más de 18 años?</h2>
-    <button onclick="document.getElementById('filtro-edad').style.display='none'">
-      Sí, soy mayor de edad
-    </button>
-  </div>
 
-  <!-- Carrito -->
-  <div id="carrito">
-    Carrito 🛒 <span id="contador">0</span>
-  </div>
+<!-- Modal de edad -->
+<div id="ageModal">
+    <h2>Prohibida la venta a menores de edad</h2>
+    <button id="btn18">Tengo 18+</button>
+    <button id="btnMinor">Soy menor</button>
+</div>
 
-  <!-- Portada -->
-  <div class="portada">
-    <h1>Aura Vape</h1>
-  </div>
+<!-- Encabezado -->
+<div id="header">Aura Vape</div>
 
-  <!-- Buscador -->
-  <section class="busqueda">
-    <input
-      type="text"
-      id="buscador"
-      onkeyup="buscarProductos()"
-      placeholder="Buscar productos..."
-    />
-  </section>
+<!-- Icono carrito -->
+<div id="cartIcon">🛒</div>
 
-  <!-- Productos -->
-  <section class="productos" id="lista-productos">
-    <div class="producto">
-      <img src="enoubar.png" alt="Enoubar" />
-      <h4>Enoubar - $200</h4>
-      <label for="sabores-enoubar">Sabores:</label><br />
-      <select id="sabores-enoubar">
-        <option>Watermelon Bubblegum</option>
-        <option>Blue Razz Ice</option>
-        <option>Strawberry Mango</option>
-        <option>Tropical Rainbow</option>
-        <option>Big Bang</option>
-      </select>
-      <button
-        onclick="agregarAlCarrito('Enoubar', 200, document.getElementById('sabores-enoubar').value)"
-      >
-        Agregar
-      </button>
+<!-- Panel carrito -->
+<div id="cartPanel">
+    <h2>Tu Carrito</h2>
+    <div id="cartItems"></div>
+    <h3 id="cartTotal">Total: $0</h3>
+    <button id="checkoutBtn">Pagar por WhatsApp</button>
+</div>
+
+<!-- Portada -->
+<div id="hero">
+    <div class="main-buttons">
+        <button onclick="openSection('mayoreo')">MAYOREO</button>
+        <button onclick="openSection('menudeo')">MENUDEO</button>
+    </div>
+</div>
+
+<!-- Secciones -->
+<div id="mayoreo" class="section">
+    <h2>Mayoreo</h2>
+    <p>Próximamente más productos.</p>
+</div>
+
+<div id="menudeo" class="section">
+    <h2>Menudeo</h2>
+
+    <!-- Producto ejemplo -->
+    <div class="product">
+        <img src="PRODUCTO-WAKA.png" alt="Waka 36K">
+        <div>
+            <h3>Waka 36K</h3>
+            <p>$550</p>
+            <button onclick="addToCart('Waka 36K', 550)">Agregar al carrito</button>
+        </div>
     </div>
 
-    <div class="producto">
-      <img src="vplay.png" alt="V-Play" />
-      <h4>V-Play - $350</h4>
-      <label for="sabores-vplay">Sabores:</label><br />
-      <select id="sabores-vplay">
-        <option>Strawbeet Fun-Ta</option>
-        <option>Power Up</option>
-        <option>Strawgo</option>
-        <option>Vegas Delight</option>
-        <option>Mintastic</option>
-      </select>
-      <button
-        onclick="agregarAlCarrito('V-Play', 350, document.getElementById('sabores-vplay').value)"
-      >
-        Agregar
-      </button>
-    </div>
+</div>
 
-    <div class="producto">
-      <img src="dummy.png" alt="Dummy" />
-      <h4>Dummy - $250</h4>
-      <label for="sabores-dummy">Sabores:</label><br />
-      <select id="sabores-dummy">
-        <option>Banana Ice</option>
-        <option>Cool Mint</option>
-        <option>Gummy Bear</option>
-        <option>Peach Ice</option>
-        <option>Mixed Berries</option>
-      </select>
-      <button
-        onclick="agregarAlCarrito('Dummy', 250, document.getElementById('sabores-dummy').value)"
-      >
-        Agregar
-      </button>
-    </div>
+<script>
+/* -------- MODAL 18+ -------- */
+document.getElementById("btn18").onclick = () => {
+    document.getElementById("ageModal").style.display = "none";
+};
 
-    <div class="producto">
-      <img src="packspod.png" alt="Packspod" />
-      <h4>Packspod - $250</h4>
-      <label for="sabores-packspod">Sabores:</label><br />
-      <select id="sabores-packspod">
-        <option>Cola</option>
-        <option>Peach Ice</option>
-        <option>Mint</option>
-        <option>Mixed Berries</option>
-        <option>Melon Ice</option>
-      </select>
-      <button
-        onclick="agregarAlCarrito('Packspod', 250, document.getElementById('sabores-packspod').value)"
-      >
-        Agregar
-      </button>
-    </div>
+document.getElementById("btnMinor").onclick = () => {
+    alert("Lo sentimos, no puedes acceder al sitio.");
+    window.location.href = "https://google.com";
+};
 
-    <div class="producto">
-      <img src="lostvape.png" alt="Lost Vape" />
-      <h4>Lost Vape - $250</h4>
-      <label for="sabores-lostvape">Sabores:</label><br />
-      <select id="sabores-lostvape">
-        <option>Tobacco</option>
-        <option>Cool Mint</option>
-        <option>Mango</option>
-        <option>Strawberry Ice</option>
-        <option>Grape</option>
-      </select>
-      <button
-        onclick="agregarAlCarrito('Lost Vape', 250, document.getElementById('sabores-lostvape').value)"
-      >
-        Agregar
-      </button>
-    </div>
+/* -------- CAMBIO DE SECCIONES -------- */
+function openSection(id) {
+    document.querySelectorAll(".section").forEach(s => s.style.display = "none");
+    document.getElementById(id).style.display = "block";
+    window.scrollTo(0,0);
+}
 
-    
-    
-        Agregar
-      </button>
-    </div>
-  </section>
+/* -------- CARRITO -------- */
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  <!-- Contacto -->
-  <section id="contacto">
-    <h2>Contacto</h2>
-    <div class="contacto-info">
-      <p>📍 Dirección: CDMX</p>
-      <p>
-        📞 WhatsApp:
-        <a
-          href="https://wa.me/5573878279"
-          target="_blank"
-          style="color:#25d366;"
-          >+52 5573878279</a
-        >
-      </p>
-      <p>
-        ✉️ Correo:
-        <a href="mailto:contacto@auravape.com" style="color:#25d366;"
-          >contacto@auravape.com</a
-        >
-      </p>
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3..."
-        allowfullscreen
-      ></iframe>
-    </div>
-  </section>
+function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
 
-  <!-- FAQ -->
-  <section id="faq">
-    <h2>Preguntas Frecuentes</h2>
-    <div class="faq">
-      <div class="faq-item">
-        <h4>¿Hacen envíos a todo México?</h4>
-        <p>Sí, realizamos envíos a cualquier parte de la República Mexicana.</p>
-      </div>
-      <div class="faq-item">
-        <h4>¿Cuánto tarda el envío?</h4>
-        <p>Entre 2 a 5 días hábiles, dependiendo de tu ubicación.</p>
-      </div>
-      <div class="faq-item">
-        <h4>¿Tienen garantía?</h4>
-        <p>Sí, todos los productos tienen garantía de fábrica.</p>
-      </div>
-      <div class="faq-item">
-        <h4>¿Qué métodos de pago aceptan?</h4>
-        <p>Aceptamos transferencias, pagos con tarjeta y OXXO.</p>
-      </div>
-    </div>
-  </section>
+function addToCart(name, price) {
+    let item = cart.find(p => p.name === name);
+    if (item) item.quantity++;
+    else cart.push({ name, price, quantity: 1 });
 
-  <!-- Footer -->
-  <footer>&copy; 2025 Aura Vape. Todos los derechos reservados.</footer>
+    saveCart();
+    renderCart();
+}
 
-  <script>
-    let contador = 0;
+/* Mostrar carrito */
+document.getElementById("cartIcon").onclick = () => {
+    document.getElementById("cartPanel").style.right = "0px";
+};
+document.getElementById("cartPanel").onclick = (e) => {
+    if (e.target.id === "cartPanel") {
+        document.getElementById("cartPanel").style.right = "-400px";
+    }
+};
 
-    function agregarAlCarrito(marca, precio, sabor) {
-      contador++;
-      document.getElementById('contador').innerText = contador;
-      alert(
-        `Agregaste al carrito:\nProducto: ${marca}\nSabor: ${sabor}\nPrecio: $${precio}`
-      );
+function renderCart() {
+    let container = document.getElementById("cartItems");
+    let total = 0;
+    container.innerHTML = "";
+
+    cart.forEach(item => {
+        total += item.price * item.quantity;
+        container.innerHTML += `
+            <p><strong>${item.name}</strong> x ${item.quantity} — $${item.price * item.quantity}</p>
+        `;
+    });
+
+    document.getElementById("cartTotal").innerText = "Total: $" + total;
+}
+renderCart();
+
+/* -------- WHATSAPP CHECKOUT -------- */
+document.getElementById("checkoutBtn").onclick = () => {
+    if (cart.length === 0) {
+        alert("Tu carrito está vacío");
+        return;
     }
 
-    function buscarProductos() {
-      let input = document.getElementById('buscador').value.toLowerCase();
-      let productos = document.querySelectorAll('.producto');
-      productos.forEach((prod) => {
-        const texto = prod.innerText.toLowerCase();
-        prod.style.display = texto.includes(input) ? 'block' : 'none';
-      });
-    }
-  </script>
+    let message = "Hola, quiero completar mi compra:%0A%0A";
+    let total = 0;
+
+    cart.forEach(item => {
+        message += `• ${item.name} x ${item.quantity} = $${item.price * item.quantity}%0A`;
+        total += item.price * item.quantity;
+    });
+
+    message += `%0ATotal: $${total}%0A%0AMi nombre es:%0ADirección:`;
+
+    let url = `https://wa.me/525573878279?text=${message}`;
+    window.open(url, "_blank");
+};
+</script>
+
 </body>
 </html>
